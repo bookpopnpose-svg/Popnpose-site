@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pop N Pose Photobooth — Toronto Open-Air Photobooth Rentals</title>
+<meta name="description" content="Open-air photobooth rentals for weddings, parties and corporate events in Toronto. Pop the flash, strike a pose, print in seconds.">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Caveat:wght@500;600;700&display=swap');
+
+  :root{
+    --ink:#0D0D0D;
+    --paper:#FFFFFF;
+    --fog:#F2F2F0;
+    --mid:#6D6D69;
+    --mid-dark:#B7B7B2;
+    --line: rgba(13,13,13,0.14);
+    --line-on-dark: rgba(255,255,255,0.20);
+    --shadow: 0 20px 44px rgba(13,13,13,0.14);
+    --shadow-lg: 0 30px 70px rgba(13,13,13,0.22);
+    --radius: 2px;
+    --maxw: 1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--mid);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;
+    height:1px;
+    background:var(--ink);
+    display:inline-block;
+  }
+
+  /* Scroll reveal */
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);
+  }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+  .reveal-stagger.is-visible > *{ transition-delay: calc(var(--i, 0) * 90ms); }
+
+  /* Buttons */
+  .btn{
+    font-family:'Work Sans', sans-serif;
+    font-weight:600;
+    font-size:14.5px;
+    letter-spacing:0.01em;
+    padding:14px 26px;
+    border-radius:var(--radius);
+    border:1px solid transparent;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    transition:transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
+  }
+  .btn:focus-visible, a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
+    outline:2px solid var(--ink);
+    outline-offset:3px;
+  }
+  .btn-primary{
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:var(--shadow); }
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink);
+    border-color:var(--ink);
+  }
+  .btn-ghost:hover{ transform:translateY(-2px); background:var(--ink); color:var(--paper); }
+  .btn-invert{
+    background:var(--paper);
+    color:var(--ink);
+  }
+  .btn-invert:hover{ transform:translateY(-2px); box-shadow:0 20px 44px rgba(255,255,255,0.12); }
+
+  /* ===== Header ===== */
+  header{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    background:rgba(255,255,255,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 32px;
+    max-width:var(--maxw);
+    margin:0 auto;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:var(--ink);
+  }
+  .logo-mark{ width:42px; height:42px; flex-shrink:0; object-fit:contain; }
+  .logo-text{
+    font-family:'Fraunces', serif;
+    font-size:18px;
+    font-weight:600;
+    letter-spacing:0.01em;
+    line-height:1.1;
+  }
+  .logo-text small{
+    display:block;
+    font-family:'Space Mono', monospace;
+    font-size:9px;
+    letter-spacing:0.2em;
+    color:var(--mid);
+    font-weight:400;
+    text-transform:uppercase;
+    margin-top:2px;
+  }
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:34px;
+    list-style:none;
+    margin:0; padding:0;
+  }
+  .nav-links a{
+    text-decoration:none;
+    font-size:14.5px;
+    font-weight:500;
+    color:var(--ink);
+    position:relative;
+    padding-bottom:3px;
+  }
+  .nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    width:0; height:1px;
+    background:var(--ink);
+    transition:width .2s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{ display:flex; align-items:center; gap:18px; }
+  .menu-btn{
+    display:none;
+    background:none;
+    border:1px solid var(--ink);
+    padding:8px 10px;
+    border-radius:var(--radius);
+    cursor:pointer;
+  }
+  .menu-btn span{ display:block; width:18px; height:1.5px; background:var(--ink); margin:4px 0; }
+
+  /* ===== Hero ===== */
+  .hero{
+    padding:172px 0 0;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:60px;
+    align-items:center;
+    padding-bottom:180px;
+  }
+  .hero h1{
+    font-size:clamp(40px, 5.4vw, 68px);
+    line-height:1.02;
+    margin:18px 0 22px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:400;
+  }
+  .hero p.lede{
+    font-size:18px;
+    color:var(--mid);
+    max-width:460px;
+    margin-bottom:34px;
+  }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:30px;}
+  .hero-meta{
+    display:flex;
+    gap:26px;
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    color:var(--mid);
+    letter-spacing:0.04em;
+  }
+
+  /* Booth photo stage + printing strip */
+  .booth-stage{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding-top:6px;
+  }
+  .booth-card{
+    background:var(--ink);
+    border-radius:8px;
+    padding:38px 30px 50px;
+    width:100%;
+    max-width:360px;
+    box-shadow:var(--shadow-lg);
+    position:relative;
+  }
+  .booth-photo-wrap{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    animation:bob 5s ease-in-out infinite;
+  }
+  @keyframes bob{
+    0%, 100%{ transform:translateY(0); }
+    50%{ transform:translateY(-8px); }
+  }
+  .booth-photo{
+    width:62%;
+    filter:drop-shadow(0 18px 22px rgba(0,0,0,0.5));
+  }
+  .flash-veil{
+    position:absolute;
+    inset:0;
+    background:#FFFFFF;
+    border-radius:8px;
+    opacity:0;
+    pointer-events:none;
+    animation:flash 4.2s ease-in-out infinite;
+  }
+  @keyframes flash{
+    0%, 95.5%, 100%{ opacity:0; }
+    96.5%{ opacity:.96; }
+    98%{ opacity:0; }
+  }
+  .booth-caption{
+    text-align:center;
+    font-family:'Space Mono', monospace;
+    font-size:10px;
+    letter-spacing:0.3em;
+    color:var(--mid-dark);
+    margin-top:18px;
+  }
+  .strip-slot{
+    position:absolute;
+    bottom:-58px;
+    left:50%;
+    transform:translateX(-50%);
+    width:112px;
+    overflow:hidden;
+    height:0;
+    animation:print 4.2s ease-in-out infinite;
+  }
+  @keyframes print{
+    0%, 10%{ height:0; }
+    50%, 100%{ height:238px; }
+  }
+  .filmstrip{
+    background:var(--paper);
+    padding:8px 8px 16px;
+    border-radius:2px;
+    box-shadow:0 14px 30px rgba(13,13,13,0.32);
+  }
+  .filmstrip .frame{
+    width:100%;
+    aspect-ratio:5/4;
+    margin-bottom:7px;
+    border-radius:1px;
+    position:relative;
+    overflow:hidden;
+    background:#1c1c1c;
+  }
+  .filmstrip .frame:last-child{ margin-bottom:0; }
+  .filmstrip .frame::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.5), transparent 45%);
+  }
+  .filmstrip .stamp{
+    font-family:'Caveat', cursive;
+    font-size:16px;
+    text-align:center;
+    color:var(--ink);
+    margin-top:4px;
+  }
+
+  /* Marquee */
+  .marquee{
+    background:var(--ink);
+    color:var(--paper);
+    overflow:hidden;
+    white-space:nowrap;
+    border-top:1px solid var(--line-on-dark);
+    border-bottom:1px solid var(--line-on-dark);
+  }
+  .marquee-track{
+    display:inline-flex;
+    align-items:center;
+    animation:scroll-left 26s linear infinite;
+  }
+  .marquee-track span{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:20px;
+    padding:16px 34px;
+    display:inline-flex;
+    align-items:center;
+    gap:34px;
+  }
+  .marquee-track span::after{
+    content:"✦";
+    font-style:normal;
+    font-size:12px;
+    color:var(--mid-dark);
+  }
+  @keyframes scroll-left{
+    0%{ transform:translateX(0); }
+    100%{ transform:translateX(-50%); }
+  }
+
+  /* ===== Section shell ===== */
+  section{ padding:100px 0; }
+  .section-head{
+    max-width:640px;
+    margin-bottom:56px;
+  }
+  .brand-badge{
+    display:block;
+    width:150px;
+    height:auto;
+    margin:0 auto 28px;
+    opacity:0.94;
+  }
+  .section-head h2{
+    font-size:clamp(30px, 3.6vw, 44px);
+    margin-top:14px;
+    line-height:1.08;
+  }
+  .section-head p{
+    color:var(--mid);
+    font-size:16.5px;
+    margin-top:16px;
+    max-width:540px;
+  }
+  .section-head-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:40px;
+    margin-bottom:56px;
+  }
+  .thankyou-stamp{
+    width:132px;
+    height:auto;
+    flex-shrink:0;
+    transform:rotate(7deg);
+    filter:grayscale(1) contrast(1.05);
+    opacity:0.9;
+  }
+  .dark{ background:var(--ink); color:var(--paper); }
+  .dark .eyebrow{ color:var(--mid-dark); }
+  .dark .eyebrow::before{ background:var(--paper); }
+  .dark h2, .dark h3, .dark h4{ color:var(--paper); }
+  .dark p{ color:var(--mid-dark); }
+
+  /* ===== How it works ===== */
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:0;
+    border-top:1px solid var(--line);
+  }
+  .step{
+    padding:34px 30px 34px 0;
+    border-right:1px solid var(--line);
+    position:relative;
+    transition:background .25s ease;
+  }
+  .step:hover{ background:var(--fog); }
+  .step:last-child{ border-right:none; padding-right:0; }
+  .step:not(:first-child){ padding-left:34px; }
+  .step-num{
+    font-family:'Space Mono', monospace;
+    font-size:13px;
+    color:var(--paper);
+    background:var(--ink);
+    display:inline-block;
+    padding:3px 9px;
+    border-radius:2px;
+    margin-bottom:18px;
+  }
+  .step h3{ font-size:22px; margin-bottom:10px; }
+  .step p{ color:var(--mid); font-size:15px; margin:0; }
+
+  /* ===== Meet the booth (equipment) ===== */
+  .rigs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .rigs-single{
+    grid-template-columns:1fr;
+    max-width:520px;
+    margin:0 auto;
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .rig{
+    background:var(--paper);
+    padding:48px 40px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    position:relative;
+  }
+  .rig-photo-wrap{
+    height:280px;
+    display:flex;
+    align-items:flex-end;
+    margin-bottom:28px;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1);
+  }
+  .rig:hover .rig-photo-wrap{ transform:translateY(-6px) scale(1.02); }
+  .rig-photo{
+    height:100%;
+    width:auto;
+    filter:drop-shadow(0 22px 26px rgba(13,13,13,0.22));
+  }
+  .rig-tag{
+    font-family:'Space Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--mid);
+  }
+  .rig h3{ font-size:26px; margin:12px 0 10px; }
+  .rig p.desc{ font-size:15px; color:var(--mid); max-width:340px; margin-bottom:22px; }
+  .rig-feats{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
+    list-style:none;
+    padding:0; margin:0;
+  }
+  .rig-feats li{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.04em;
+    padding:6px 12px;
+    border:1px solid var(--line);
+    border-radius:20px;
+  }
+
+  /* ===== Feature rows (built for beautiful results) ===== */
+  .feat-row{
+    display:grid;
+    grid-template-columns:0.85fr 1fr;
+    gap:64px;
+    align-items:center;
+    padding:44px 0;
+    border-top:1px solid var(--line);
+  }
+  .feat-row:last-of-type{ border-bottom:1px solid var(--line); }
+  .feat-reverse{ grid-template-columns:1fr 0.85fr; }
+  .feat-reverse .feat-photo{ order:2; }
+  .feat-reverse .feat-copy{ order:1; }
+  .feat-photo{
+    background:var(--fog);
+    border-radius:6px;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1);
+  }
+  .feat-row:hover .feat-photo{ transform:translateY(-4px); }
+  .feat-photo img{
+    width:100%;
+    max-width:340px;
+    border-radius:4px;
+    filter:drop-shadow(0 18px 26px rgba(13,13,13,0.18));
+  }
+  .feat-num{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.1em;
+    color:var(--mid);
+  }
+  .feat-copy h3{ font-size:26px; margin:12px 0 12px; }
+  .feat-copy p{ font-size:15.5px; color:var(--mid); max-width:440px; margin:0; }
+
+  /* ===== Occasions ===== */
+  .occasions{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .occasion{
+    background:var(--paper);
+    padding:30px 24px;
+    transition:background .25s ease, transform .25s ease;
+  }
+  .occasion:hover{ background:var(--fog); transform:translateY(-3px); }
+  .occasion h4{ font-size:18px; margin-bottom:8px; }
+  .occasion p{ font-size:14px; color:var(--mid); margin:0; }
+
+  /* ===== Packages ===== */
+  .pkg-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  .pkg{
+    background:var(--fog);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:34px 28px;
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .pkg:hover{ transform:translateY(-4px); box-shadow:var(--shadow); }
+  .pkg.featured{
+    background:var(--ink);
+    color:var(--paper);
+    border-color:var(--ink);
+    transform:translateY(-10px);
+    box-shadow:var(--shadow);
+  }
+  .pkg.featured:hover{ transform:translateY(-14px); }
+  .pkg.featured .pkg-tag{ color:var(--mid-dark); }
+  .pkg.featured p, .pkg.featured li{ color:var(--mid-dark); }
+  .pkg.featured h3{ color:var(--paper); }
+  .pkg.featured .pkg-price{ color:var(--paper); }
+  .pkg.featured hr{ border-color:var(--line-on-dark); }
+  .pkg.featured li::before{ color:var(--paper); }
+  .pkg-tag{
+    font-family:'Space Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--mid);
+  }
+  .pkg h3{ font-size:26px; margin:12px 0 6px; }
+  .pkg-price{
+    font-family:'Fraunces', serif;
+    font-size:34px;
+    font-weight:500;
+    margin-bottom:4px;
+  }
+  .pkg-price span{ font-family:'Work Sans', sans-serif; font-size:14px; font-weight:400; color:var(--mid); }
+  .pkg p.desc{ font-size:14.5px; color:var(--mid); margin-bottom:20px; }
+  .pkg hr{ border:none; border-top:1px solid var(--line); margin:0 0 20px; }
+  .pkg ul{ list-style:none; margin:0 0 28px; padding:0; flex-grow:1; }
+  .pkg li{
+    font-size:14.5px;
+    padding:7px 0;
+    display:flex;
+    gap:10px;
+    color:var(--mid);
+  }
+  .pkg li::before{
+    content:"✦";
+    color:var(--ink);
+    font-size:12px;
+    margin-top:3px;
+  }
+  .pkg .btn{ justify-content:center; width:100%; }
+  .pkg.featured .btn-ghost{ background:var(--paper); color:var(--ink); border-color:var(--paper); }
+  .pkg.featured .btn-ghost:hover{ background:transparent; color:var(--paper); }
+
+  /* ===== Extras ===== */
+  .extras{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .extra{
+    background:var(--paper);
+    padding:28px 22px;
+    transition:background .25s ease, transform .25s ease;
+  }
+  .extra:hover{ background:var(--fog); transform:translateY(-3px); }
+  .extra .ex-icon{ margin-bottom:14px; }
+  .extra h4{ font-size:17px; margin-bottom:6px; }
+  .extra p{ font-size:14px; color:var(--mid); margin:0; }
+
+  /* ===== Testimonials ===== */
+  .guestbook{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  .g-card{
+    background:var(--fog);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:28px 26px;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .g-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow); }
+  .g-card .quote{
+    font-family:'Caveat', cursive;
+    font-size:23px;
+    line-height:1.4;
+    color:var(--ink);
+  }
+  .g-card .who{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    color:var(--mid);
+    margin-top:16px;
+    letter-spacing:0.03em;
+  }
+
+  /* ===== FAQ ===== */
+  .faq{ max-width:760px; }
+  details{
+    border-top:1px solid var(--line);
+    padding:22px 0;
+  }
+  details:last-of-type{ border-bottom:1px solid var(--line); }
+  summary{
+    cursor:pointer;
+    list-style:none;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'Fraunces', serif;
+    font-size:19px;
+    font-weight:500;
+    gap:20px;
+  }
+  summary::-webkit-details-marker{ display:none; }
+  summary .plus{
+    font-family:'Space Mono', monospace;
+    font-size:20px;
+    color:var(--mid);
+    flex-shrink:0;
+    transition:transform .2s ease;
+  }
+  details[open] summary .plus{ transform:rotate(45deg); }
+  details p{
+    margin:14px 0 0;
+    color:var(--mid);
+    font-size:15.5px;
+    max-width:600px;
+  }
+
+  /* ===== Contact ===== */
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+  }
+  .contact-info h3{ color:var(--paper); font-size:24px; margin-bottom:14px; }
+  .contact-info p{ margin-bottom:26px; }
+  .contact-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:14px; }
+  .contact-list a{ text-decoration:none; color:var(--paper); font-weight:500; border-bottom:1px solid var(--line-on-dark); padding-bottom:2px; }
+  .contact-list span{ display:block; font-family:'Space Mono', monospace; font-size:11px; color:var(--mid-dark); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px; }
+
+  form{ display:flex; flex-direction:column; gap:16px; }
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  label{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--mid-dark);
+    margin-bottom:6px;
+    display:block;
+  }
+  input, textarea, select{
+    width:100%;
+    background:transparent;
+    border:none;
+    border-bottom:1px solid var(--line-on-dark);
+    color:var(--paper);
+    font-family:'Work Sans', sans-serif;
+    font-size:15px;
+    padding:9px 2px;
+    transition:border-color .2s ease;
+  }
+  input:focus, textarea:focus, select:focus{ border-color:var(--paper); }
+  input::placeholder, textarea::placeholder{ color:#6b6b68; }
+  textarea{ resize:vertical; min-height:70px; }
+  form .btn{ margin-top:10px; align-self:flex-start; }
+
+  /* ===== Footer ===== */
+  footer{
+    background:var(--ink);
+    border-top:1px solid var(--line-on-dark);
+    padding:44px 0 30px;
+  }
+  .foot-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+  }
+  .foot-row .logo-text{ color:var(--paper); }
+  .foot-links{ display:flex; gap:26px; list-style:none; padding:0; margin:0; }
+  .foot-links a{ color:var(--mid-dark); text-decoration:none; font-size:14px; }
+  .foot-links a:hover{ color:var(--paper); }
+  .foot-bottom{
+    margin-top:34px;
+    padding-top:22px;
+    border-top:1px solid var(--line-on-dark);
+    display:flex;
+    justify-content:space-between;
+    color:#5a5a57;
+    font-size:12.5px;
+    font-family:'Space Mono', monospace;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width:980px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .booth-stage{ order:-1; padding-bottom:200px; }
+    .steps{ grid-template-columns:1fr; }
+    .step{ border-right:none; border-bottom:1px solid var(--line); padding:26px 0 !important; }
+    .step:last-child{ border-bottom:none; }
+    .rigs{ grid-template-columns:1fr; }
+    .feat-row, .feat-reverse{ grid-template-columns:1fr; gap:28px; }
+    .feat-reverse .feat-photo{ order:1; }
+    .feat-reverse .feat-copy{ order:2; }
+    .feat-photo img{ max-width:220px; }
+    .occasions{ grid-template-columns:1fr 1fr; }
+    .pkg-grid{ grid-template-columns:1fr; }
+    .pkg.featured{ transform:none; }
+    .pkg.featured:hover{ transform:translateY(-4px); }
+    .extras{ grid-template-columns:1fr 1fr; }
+    .extra:nth-child(5){ grid-column:1 / -1; }
+    .guestbook{ grid-template-columns:1fr; }
+    .thankyou-stamp{ display:none; }
+    .contact-grid{ grid-template-columns:1fr; gap:44px; }
+    .nav-links{ display:none; }
+    .nav-links.open{
+      display:flex;
+      flex-direction:column;
+      position:absolute;
+      top:64px;
+      right:20px;
+      background:var(--paper);
+      padding:18px 24px;
+      border:1px solid var(--line);
+      border-radius:4px;
+      gap:16px;
+      box-shadow:var(--shadow);
+    }
+    .menu-btn{ display:block; }
+  }
+  @media (max-width:600px){
+    .wrap{ padding:0 20px; }
+    .hero{ padding-top:150px; }
+    .form-row{ grid-template-columns:1fr; }
+    .extras{ grid-template-columns:1fr; }
+    .occasions{ grid-template-columns:1fr; }
+    .foot-row{ flex-direction:column; align-items:flex-start; }
+    .marquee-track span{ font-size:16px; padding:14px 22px; }
+    .nav{ padding:12px 16px; }
+    .logo{ gap:8px; }
+    .logo-mark{ width:34px; height:34px; }
+    .logo-text{ font-size:14.5px; white-space:nowrap; }
+    .logo-text small{ font-size:8px; letter-spacing:0.12em; }
+    .nav-cta{ gap:8px; }
+    .nav-cta .btn-primary{ padding:9px 12px; font-size:12px; white-space:nowrap; }
+    .menu-btn{ padding:7px 8px; }
+  }
+</style>
+<noscript>
+  <style>.reveal{ opacity:1 !important; transform:none !important; }</style>
+</noscript>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="#top" class="logo">
+      <img src="assets/mark-black.png" alt="Pop N Pose Photobooth" class="logo-mark">
+      <span class="logo-text">Pop N Pose<small>Photobooth</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#booth">The booth</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary">Check your date</a>
+      <button class="menu-btn" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Toronto &amp; GTA · Open-air photobooth rentals</p>
+        <h1>Strike a pose.<br><em>We'll</em> do the rest.</h1>
+        <p class="lede">A built-in DSLR camera, a ring light, and a real print in your guests' hands before the song's over. Pop N Pose brings a proper photobooth — not a phone on a stick — to weddings, showers, and parties across the GTA.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary">Check your date</a>
+          <a href="#packages" class="btn btn-ghost">See packages</a>
+        </div>
+        <div class="hero-meta">
+          <span>4.9★ AVG RATING</span>
+          <span>120+ EVENTS SHOT</span>
+          <span>PRINTS IN ~8 SEC</span>
+        </div>
+      </div>
+      <div class="booth-stage">
+        <div class="booth-card">
+          <div class="flash-veil"></div>
+          <div class="booth-photo-wrap">
+            <img src="assets/booth-black.png" alt="Pop N Pose studio black open-air photobooth" class="booth-photo">
+          </div>
+          <p class="booth-caption">PRESS · POSE · POP</p>
+          <div class="strip-slot">
+            <div class="filmstrip">
+              <div class="frame"></div>
+              <div class="frame"></div>
+              <div class="frame"></div>
+              <p class="stamp">08 · 18 · 26</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>OPEN-AIR PHOTOBOOTH</span><span>PRINTS IN ~8 SECONDS</span><span>BOOK YOUR DATE</span><span>TORONTO &amp; THE GTA</span><span>OPEN-AIR PHOTOBOOTH</span><span>PRINTS IN ~8 SECONDS</span><span>BOOK YOUR DATE</span><span>TORONTO &amp; THE GTA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The rundown</p>
+        <h2>Three steps between booking and belly laughs</h2>
+        <p>No apps, no queues, no fumbling with props while your makeup's still fresh. We show up, we set up, your guests do the rest.</p>
+      </div>
+      <div class="steps reveal">
+        <div class="step">
+          <span class="step-num">01</span>
+          <h3>Pick your look</h3>
+          <p>Choose your booth style, backdrop and print layout. We'll match the overlay to your colours, monogram or logo — no extra charge.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">02</span>
+          <h3>We set the scene</h3>
+          <p>Our team arrives an hour early, builds the backdrop, styles the prop table, and runs a full test strip before a single guest walks in.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">03</span>
+          <h3>Pop, pose, print</h3>
+          <p>Guests tap the button, strike a pose, and walk away with a print in about 8 seconds — plus a digital copy waiting on their phone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEET THE BOOTH -->
+  <section id="booth" style="background:var(--fog); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <img src="assets/logo-lockup-black.png" alt="Pop N Pose Photobooth" class="brand-badge reveal">
+      <div class="section-head reveal" style="text-align:center; margin-left:auto; margin-right:auto;">
+        <p class="eyebrow" style="justify-content:center;">The hardware</p>
+        <h2>Studio Black. Same DSLR magic.</h2>
+        <p style="margin-left:auto; margin-right:auto;">A built-in DSLR camera, a ring light for perfectly lit shots every time, an instant printer, and a 15.6" touchscreen — all packed into one matte black stand.</p>
+      </div>
+      <div class="rigs rigs-single reveal">
+        <div class="rig">
+          <span class="rig-tag">Studio Black</span>
+          <div class="rig-photo-wrap">
+            <img src="assets/booth-black.png" alt="Studio Black open-air photobooth on a floor stand" class="rig-photo">
+          </div>
+          <h3>The blackout stand</h3>
+          <p class="desc">Matte black shell with a floating shelf for props. Disappears into any backdrop, wedding or warehouse party alike. Between sessions, the 15.6" screen runs a live slideshow of every shot taken that night.</p>
+          <ul class="rig-feats">
+            <li>Built-in DSLR camera</li>
+            <li>Ring light</li>
+            <li>15.6" touchscreen</li>
+            <li>Live event slideshow</li>
+            <li>Built-in printer</li>
+            <li>Floor stand incl.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILT FOR BEAUTIFUL RESULTS -->
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Booth features</p>
+        <h2>Built for beautiful results</h2>
+        <p>Professional gear under the hood — this is what actually makes the shots look this good.</p>
+      </div>
+
+      <div class="feat-row reveal">
+        <div class="feat-photo">
+          <img src="assets/detail-camera.png" alt="Close-up of the booth's built-in DSLR camera and ring light">
+        </div>
+        <div class="feat-copy">
+          <span class="feat-num">01</span>
+          <h3>Built-in DSLR &amp; ring light</h3>
+          <p>A real DSLR camera paired with a ring light around the lens means every shot comes out crisp and evenly lit — no harsh shadows, no grainy phone-camera look, no matter how dark the venue gets.</p>
+        </div>
+      </div>
+
+      <div class="feat-row feat-reverse reveal">
+        <div class="feat-photo">
+          <img src="assets/booth-black.png" alt="Pop N Pose Studio Black photobooth with built-in instant printer">
+        </div>
+        <div class="feat-copy">
+          <span class="feat-num">02</span>
+          <h3>Prints in about 8 seconds</h3>
+          <p>The printer is built right into the stand — no separate station, no waiting on an app or a text message. Guests walk away with a real print still warm from the machine before the next song starts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERFECT FOR EVERY OCCASION -->
+  <section style="background:var(--fog); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Great for</p>
+        <h2>Perfect for every occasion</h2>
+        <p>Same booth, same 8-second magic — it just adapts to whatever you've got going on.</p>
+      </div>
+      <div class="occasions reveal">
+        <div class="occasion">
+          <h4>Weddings</h4>
+          <p>Prints personalized with the couple's names and date — unlimited copies, doubling as a wedding favour.</p>
+        </div>
+        <div class="occasion">
+          <h4>Corporate events</h4>
+          <p>Prints and the welcome screen carry your logo and brand colours for a polished, on-brand activation.</p>
+        </div>
+        <div class="occasion">
+          <h4>Showers &amp; birthdays</h4>
+          <p>A crowd-pleaser for milestone birthdays, baby and bridal showers, and everything worth celebrating.</p>
+        </div>
+        <div class="occasion">
+          <h4>Parties &amp; socials</h4>
+          <p>From office holiday parties to backyard get-togethers — set up in under an hour, packed up just as fast.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section id="packages">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Packages</p>
+        <h2>Built for however long the party runs</h2>
+        <p>Every package includes an attendant, unlimited sessions, a custom print design, and a shareable online gallery after the event.</p>
+      </div>
+      <div class="pkg-grid reveal">
+        <div class="pkg">
+          <span class="pkg-tag">The Pop</span>
+          <h3>2 Hours</h3>
+          <p class="pkg-price">$499 <span>+ HST</span></p>
+          <p class="desc">Right-sized for showers, small parties and brand activations.</p>
+          <hr>
+          <ul>
+            <li>Open air + attendant</li>
+            <li>Custom design on screen</li>
+            <li>Attendant on site</li>
+            <li>Online gallery, 30 days access</li>
+            <li>5 backdrops to choose from</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost">Check availability</a>
+        </div>
+        <div class="pkg featured">
+          <span class="pkg-tag">The Pose</span>
+          <h3>3 Hours</h3>
+          <p class="pkg-price">$599 <span>+ HST</span></p>
+          <p class="desc">Our most-booked package — the sweet spot for weddings and milestone birthdays.</p>
+          <hr>
+          <ul>
+            <li>Everything in The Pop</li>
+            <li>Custom design on screen</li>
+            <li>Attendant on site</li>
+            <li>Online gallery, 90 days access</li>
+            <li>7 backdrops to choose from</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost">Check availability</a>
+        </div>
+        <div class="pkg">
+          <span class="pkg-tag">The Encore</span>
+          <h3>4+ Hours</h3>
+          <p class="pkg-price">$799 <span>+ HST</span></p>
+          <p class="desc">For the day-long celebration — ceremony through last dance.</p>
+          <hr>
+          <ul>
+            <li>Everything in The Pose</li>
+            <li>Custom design on screen</li>
+            <li>Attendant on site</li>
+            <li>Online gallery, 90 days access</li>
+            <li>7 backdrops to choose from</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost">Check availability</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXTRAS -->
+  <section style="background:var(--fog); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Add the extras</p>
+        <h2>Little touches, made to order</h2>
+      </div>
+      <div class="extras reveal">
+        <div class="extra">
+          <div class="ex-icon">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="2" y="5" width="22" height="14" rx="1.5" stroke="var(--ink)" stroke-width="1.4"/><path d="M9 23h8M13 19v4" stroke="var(--ink)" stroke-width="1.4"/><circle cx="13" cy="12" r="3.2" stroke="var(--ink)" stroke-width="1.4"/></svg>
+          </div>
+          <h4>Live slideshow</h4>
+          <p>The 15.6" screen loops every shot from the night in between sessions — guests end up watching as much as posing.</p>
+        </div>
+        <div class="extra">
+          <div class="ex-icon">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="3" y="6" width="20" height="14" rx="1.5" stroke="var(--ink)" stroke-width="1.4"/><path d="M3 10h20" stroke="var(--ink)" stroke-width="1.4"/></svg>
+          </div>
+          <h4>Custom overlay</h4>
+          <p>Names, dates or a logo laid into every print, matched to your palette.</p>
+        </div>
+        <div class="extra">
+          <div class="ex-icon">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M4 13a9 9 0 1118 0 9 9 0 01-18 0z" stroke="var(--ink)" stroke-width="1.4"/><path d="M13 8v5l3.5 2" stroke="var(--ink)" stroke-width="1.4"/></svg>
+          </div>
+          <h4>Boomerang mode</h4>
+          <p>Short looping clips for the guests who can't sit still for a still photo.</p>
+        </div>
+        <div class="extra">
+          <div class="ex-icon">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M4 20V9l9-6 9 6v11" stroke="var(--ink)" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 20v-7h6v7" stroke="var(--ink)" stroke-width="1.4"/></svg>
+          </div>
+          <h4>Backdrop build</h4>
+          <p>Floral walls, sequin curtains, or a fully custom backdrop to match your theme.</p>
+        </div>
+        <div class="extra">
+          <div class="ex-icon">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M5 21V9l8-5 8 5v12" stroke="var(--ink)" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 21h16M9 21v-6h8v6" stroke="var(--ink)" stroke-width="1.4"/></svg>
+          </div>
+          <h4>Guestbook</h4>
+          <p>Every strip gets a duplicate, hand-glued into a book with room for a note.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="background:var(--fog); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="section-head-row reveal">
+        <div class="section-head" style="margin-bottom:0;">
+          <p class="eyebrow">From the guestbook</p>
+          <h2>Notes our guests left behind</h2>
+        </div>
+        <img src="assets/badge-thankyou.png" alt="Pop N Pose — captured with love" class="thankyou-stamp">
+      </div>
+      <div class="guestbook reveal">
+        <div class="g-card">
+          <p class="quote">"The line never stopped moving and the prints were still warm when we got home. Best $ we spent on the wedding."</p>
+          <p class="who">— T. &amp; R., Married June 2026</p>
+        </div>
+        <div class="g-card">
+          <p class="quote">"They matched the overlay to our brand colours down to the hex code. Our team still has theirs pinned up at their desks."</p>
+          <p class="who">— Event Lead, Corporate Holiday Party</p>
+        </div>
+        <div class="g-card">
+          <p class="quote">"Booked The Pose for a baby shower and the attendant kept the whole thing running itself. Zero stress, all fun."</p>
+          <p class="who">— N., Mississauga</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Good to know</p>
+        <h2>Questions we hear a lot</h2>
+      </div>
+      <div class="faq reveal">
+        <details open>
+          <summary>How much space do you need? <span class="plus">+</span></summary>
+          <p>A 10x10 ft footprint covers the booth and backdrop comfortably. We can work with less — just let us know the room when you book.</p>
+        </details>
+        <details>
+          <summary>Do you travel outside Toronto? <span class="plus">+</span></summary>
+          <p>Yes — we regularly cover Mississauga, Vaughan, Oakville and the broader GTA. Venues outside a 30km radius may include a small travel fee.</p>
+        </details>
+        <details>
+          <summary>How far in advance should we book? <span class="plus">+</span></summary>
+          <p>Wedding season (May–October) books up 3–6 months out. For showers and corporate events, 3–4 weeks' notice is usually plenty.</p>
+        </details>
+        <details>
+          <summary>Is a deposit required? <span class="plus">+</span></summary>
+          <p>A 30% deposit holds your date, with the balance due one week before your event. We'll send a contract and invoice once details are confirmed.</p>
+        </details>
+        <details>
+          <summary>Can guests get digital copies too? <span class="plus">+</span></summary>
+          <p>Every session lands in a shareable online gallery, plus a QR code at the booth so guests can grab their digital copy on the spot.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="dark">
+    <div class="wrap contact-grid">
+      <div class="contact-info reveal">
+        <img src="assets/logo-lockup-white.png" alt="Pop N Pose Photobooth" class="brand-badge" style="margin:0 0 24px;">
+        <p class="eyebrow">Let's talk dates</p>
+        <h3 style="margin-top:16px;">Tell us about your event</h3>
+        <p>Send over the basics and we'll reply within a day with availability and a quote — no pressure, no spam.</p>
+        <ul class="contact-list">
+          <li><span>Email</span><a href="mailto:Bookpopnpose@gmail.com">Bookpopnpose@gmail.com</a></li>
+          <li><span>Instagram</span><a href="#">@popnpose.jpg</a></li>
+          <li><span>Service area</span>Toronto · Mississauga · the GTA</li>
+        </ul>
+      </div>
+      <form class="reveal">
+        <div class="form-row">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Your name">
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@email.com">
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label for="date">Event date</label>
+            <input id="date" type="date">
+          </div>
+          <div>
+            <label for="type">Event type</label>
+            <select id="type">
+              <option>Wedding</option>
+              <option>Shower / Birthday</option>
+              <option>Corporate</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="msg">A little about your event</label>
+          <textarea id="msg" placeholder="Venue, guest count, vibe — whatever helps us plan."></textarea>
+        </div>
+        <button type="submit" class="btn btn-invert">Send it over</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <div class="logo">
+        <img src="assets/mark-white.png" alt="Pop N Pose Photobooth" class="logo-mark">
+        <span class="logo-text">Pop N Pose<small>Photobooth</small></span>
+      </div>
+      <ul class="foot-links">
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#booth">The booth</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Pop N Pose Photobooth · Toronto, ON</span>
+      <span>PRESS · POSE · POP</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const menuBtn = document.querySelector('.menu-btn');
+  const navLinks = document.querySelector('.nav-links');
+
+  function closeMenu(){
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
+  function toggleMenu(){
+    const willOpen = !navLinks.classList.contains('open');
+    navLinks.classList.toggle('open', willOpen);
+    menuBtn.setAttribute('aria-expanded', String(willOpen));
+  }
+
+  menuBtn.addEventListener('click', toggleMenu);
+  navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 980) closeMenu();
+  });
+
+  // Only one FAQ item open at a time
+  document.querySelectorAll('#faq details').forEach((el) => {
+    el.addEventListener('toggle', () => {
+      if (el.open) {
+        document.querySelectorAll('#faq details').forEach((other) => {
+          if (other !== el) other.open = false;
+        });
+      }
+    });
+  });
+
+  // Scroll-triggered reveal animations
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach((el) => io.observe(el));
+    // Safety net: guarantee visibility even if an observer callback never fires
+    window.setTimeout(() => {
+      revealEls.forEach((el) => el.classList.add('is-visible'));
+    }, 4000);
+  } else {
+    revealEls.forEach((el) => el.classList.add('is-visible'));
+  }
+</script>
+
+</body>
+</html>
