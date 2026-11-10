@@ -384,6 +384,49 @@ footer{background:var(--ink);color:#A9A090;border-top:1px solid #2A261F;padding:
   html{scroll-behavior:auto}
   .js .reveal{opacity:1;transform:none}
 }
+
+/* ===== Gallery (client photos carousel) ===== */
+.gal-sec{background:linear-gradient(var(--paper),var(--cream));overflow:hidden}
+.gal-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:34px}
+.gal-head .lede{margin-top:.2rem}
+.gal-nav{display:flex;gap:12px}
+.gal-btn{width:52px;height:52px;border-radius:50%;border:2px solid var(--ink);background:var(--paper);color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:transform .2s,background .2s,opacity .2s}
+.gal-btn:hover{background:var(--ink);color:var(--gold-light);transform:translateY(-2px)}
+.gal-btn:disabled{opacity:.3;cursor:default;transform:none;background:var(--paper);color:var(--ink)}
+.gal-btn svg{width:22px;height:22px}
+.gal-track{display:flex;gap:26px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:18px max(24px,calc((100vw - var(--wrap))/2 + 24px)) 42px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.gal-track::-webkit-scrollbar{display:none}
+.gal-item{flex:0 0 clamp(240px,27vw,320px);scroll-snap-align:center;background:#fff;padding:12px 12px 0;border-radius:6px;box-shadow:var(--shadow);transform:rotate(var(--tilt,0deg));transition:transform .35s ease,box-shadow .35s ease;cursor:zoom-in;margin:0}
+.gal-item:nth-child(3n+1){--tilt:-1.6deg}
+.gal-item:nth-child(3n+2){--tilt:1.2deg}
+.gal-item:nth-child(3n){--tilt:-.6deg}
+.gal-item:hover,.gal-item:focus-visible{transform:rotate(0) translateY(-6px);box-shadow:0 26px 50px -20px rgba(14,13,11,.45)}
+.gal-item:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+.gal-item .ph{aspect-ratio:4/5;border-radius:3px;overflow:hidden;background:var(--ink-2)}
+.gal-item img,.gal-item .ph svg{width:100%;height:100%;object-fit:cover;display:block}
+.gal-item figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:12px 4px 14px}
+.gal-item figcaption b{font:italic 500 1.15rem/1.1 var(--serif);font-variation-settings:"SOFT" 100,"WONK" 1}
+.gal-item figcaption span{font:600 .68rem/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink);text-align:right}
+.gal-foot{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.gal-dots{display:flex;gap:8px;flex-wrap:wrap}
+.gal-dots button{width:9px;height:9px;border-radius:999px;border:0;background:var(--line);padding:0;cursor:pointer;transition:width .3s,background .3s}
+.gal-dots button[aria-current="true"]{width:28px;background:var(--gold-grad)}
+.gal-hand{font:700 1.45rem/1 var(--hand);color:var(--gold-ink)}
+/* lightbox */
+.gal-lb{position:fixed;inset:0;z-index:200;background:rgba(14,13,11,.92);display:none;align-items:center;justify-content:center;padding:24px}
+.gal-lb.open{display:flex}
+.gal-lb figure{margin:0;max-width:min(92vw,900px);text-align:center;color:var(--paper)}
+.gal-lb img{max-height:78vh;width:auto;margin:0 auto;border-radius:6px;border:10px solid #fff}
+.gal-lb figcaption{margin-top:14px;font-size:.95rem;color:#CFC7B6}
+.gal-lb figcaption b{font:italic 500 1.25rem var(--serif);color:var(--paper);margin-right:10px}
+.gal-lb .gal-btn{position:absolute;top:50%;transform:translateY(-50%);background:transparent;border-color:var(--gold-light);color:var(--gold-light)}
+.gal-lb .gal-btn:hover{background:var(--gold-light);color:var(--ink)}
+.gal-lb .prev{left:18px}.gal-lb .next{right:18px}
+.gal-lb .close{top:22px;right:18px;transform:none}
+@media (max-width:640px){.gal-nav{display:none}.gal-lb .prev,.gal-lb .next{top:auto;bottom:18px;transform:none}}
+@media (prefers-reduced-motion:reduce){.gal-track{scroll-behavior:auto}.gal-item{transition:none}}
+.lb-ph .ph{width:min(80vw,440px);aspect-ratio:4/5;border:10px solid #fff;border-radius:6px;overflow:hidden;margin:0 auto}
+.lb-ph .ph svg{width:100%;height:100%;display:block}
 </style>
 </head>
 <body>
@@ -414,6 +457,7 @@ footer{background:var(--ink);color:#A9A090;border-top:1px solid #2A261F;padding:
       <ul>
         <li><a href="#how">How it works</a></li>
         <li><a href="#booth">The booth</a></li>
+        <li><a href="#gallery">Gallery</a></li>
         <li><a href="#packages">Packages</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
@@ -562,6 +606,37 @@ footer{background:var(--ink);color:#A9A090;border-top:1px solid #2A261F;padding:
         <p>Office holiday parties to backyard get-togethers. We're set up in under an hour.</p>
       </article>
     </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery" class="gal-sec pad" aria-roledescription="carousel" aria-label="Photos from real Pop N Pose events">
+  <div class="wrap">
+    <div class="gal-head reveal">
+      <div>
+        <span class="eyebrow">Real events</span>
+        <h2>Straight from the <em class="gold">booth</em></h2>
+        <p class="lede">Real guests, real prints, real good times. A few favourites from weddings, showers and parties across the GTA.</p>
+      </div>
+      <div class="gal-nav">
+        <button class="gal-btn" type="button" data-gal="prev" aria-label="Previous photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="gal-btn" type="button" data-gal="next" aria-label="Next photos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <div class="gal-track" tabindex="0" aria-label="Client photos, scroll sideways">
+<!-- CLIENT-PHOTOS:START (add new photos below this line, newest first) -->
+<!-- CLIENT-PHOTOS:END -->
+  </div>
+  <div class="wrap gal-foot">
+    <div class="gal-dots" role="tablist" aria-label="Choose a photo"></div>
+    <span class="gal-hand">your party could be next ✦</span>
+  </div>
+  <div class="gal-lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="gal-btn close" type="button" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button class="gal-btn prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <figure><div class="lb-ph"></div><figcaption></figcaption></figure>
+    <button class="gal-btn next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
   </div>
 </section>
 
@@ -756,7 +831,7 @@ footer{background:var(--ink);color:#A9A090;border-top:1px solid #2A261F;padding:
     <div class="foot">
       <img src="assets/logo-lockup-white.png" alt="Pop N Pose Photobooth" width="900" height="658">
       <nav aria-label="Footer">
-        <a href="#how">How it works</a><a href="#booth">The booth</a><a href="#packages">Packages</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+        <a href="#how">How it works</a><a href="#booth">The booth</a><a href="#gallery">Gallery</a><a href="#packages">Packages</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
       </nav>
     </div>
     <p class="foot-slogan" aria-label="Press, pose, pop">Press<span class="dot">·</span>Pose<span class="dot">·</span><i class="gold-text">Pop!</i></p>
@@ -798,6 +873,55 @@ footer{background:var(--ink);color:#A9A090;border-top:1px solid #2A261F;padding:
       }
     });
   });
+
+  // Client photo carousel + viewer
+  (function(){
+    var sec = document.getElementById('gallery'); if (!sec) return;
+    var track = sec.querySelector('.gal-track');
+    var items = [].slice.call(track.querySelectorAll('.gal-item'));
+    if (!items.length) { sec.hidden = true; var l = document.querySelectorAll('a[href="#gallery"]'); for (var k=0;k<l.length;k++){ var li=l[k].closest('li'); (li||l[k]).style.display='none'; } return; }
+    var prev = sec.querySelector('[data-gal=prev]'), next = sec.querySelector('[data-gal=next]');
+    var dots = sec.querySelector('.gal-dots');
+    function step(){ return items.length > 1 ? items[1].offsetLeft - items[0].offsetLeft : items[0].offsetWidth; }
+    function current(){ var mid = track.scrollLeft + track.clientWidth/2, best = 0, d = 1e9;
+      items.forEach(function(it,i){ var c = it.offsetLeft + it.offsetWidth/2, x = Math.abs(c-mid); if (x<d){d=x;best=i;} }); return best; }
+    function go(i){ var it = items[Math.max(0,Math.min(items.length-1,i))];
+      track.scrollTo({left: it.offsetLeft - (track.clientWidth - it.offsetWidth)/2}); }
+    items.forEach(function(it,i){
+      var b = document.createElement('button'); b.type='button'; b.setAttribute('aria-label','Photo '+(i+1)); b.onclick=function(){go(i);}; dots.appendChild(b);
+      it.tabIndex = 0;
+      it.addEventListener('click', function(){ open(i); });
+      it.addEventListener('keydown', function(e){ if (e.key==='Enter'||e.key===' '){ e.preventDefault(); open(i); } });
+    });
+    function sync(){ var c = current(); [].forEach.call(dots.children,function(b,i){ b.setAttribute('aria-current', i===c ? 'true':'false'); });
+      prev.disabled = track.scrollLeft < 8; next.disabled = track.scrollLeft + track.clientWidth > track.scrollWidth - 8; }
+    var t; track.addEventListener('scroll', function(){ clearTimeout(t); t = setTimeout(sync, 60); }, {passive:true});
+    window.addEventListener('resize', sync);
+    prev.onclick = function(){ track.scrollBy({left:-step()}); };
+    next.onclick = function(){ track.scrollBy({left:step()}); };
+    // gentle autoplay, paused on interaction or for reduced motion
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches, paused = false, timer;
+    ['pointerenter','focusin','touchstart'].forEach(function(ev){ sec.addEventListener(ev, function(){ paused = true; }, {passive:true}); });
+    sec.addEventListener('pointerleave', function(){ paused = false; });
+    if (!still && items.length > 2) timer = setInterval(function(){ if (paused || lb.classList.contains('open')) return;
+      if (next.disabled) track.scrollTo({left:0}); else track.scrollBy({left:step()}); }, 4500);
+    // viewer
+    var lb = sec.querySelector('.gal-lb'), lbPh = lb.querySelector('.lb-ph'), lbCap = lb.querySelector('figcaption'), at = 0, last;
+    function show(i){ at = (i + items.length) % items.length; var it = items[at];
+      var img = it.querySelector('img'); lbPh.innerHTML = '';
+      if (img) { var big = new Image(); big.src = img.currentSrc || img.src; big.alt = img.alt; lbPh.appendChild(big); }
+      else { lbPh.appendChild(it.querySelector('.ph').cloneNode(true)); }
+      lbCap.innerHTML = it.querySelector('figcaption') ? it.querySelector('figcaption').innerHTML : ''; }
+    function open(i){ last = document.activeElement; show(i); lb.classList.add('open'); lb.querySelector('.close').focus(); document.body.style.overflow='hidden'; }
+    function close(){ lb.classList.remove('open'); document.body.style.overflow=''; if (last) last.focus(); }
+    lb.querySelector('.close').onclick = close;
+    lb.querySelector('.prev').onclick = function(){ show(at-1); };
+    lb.querySelector('.next').onclick = function(){ show(at+1); };
+    lb.addEventListener('click', function(e){ if (e.target === lb) close(); });
+    document.addEventListener('keydown', function(e){ if (!lb.classList.contains('open')) return;
+      if (e.key==='Escape') close(); if (e.key==='ArrowLeft') show(at-1); if (e.key==='ArrowRight') show(at+1); });
+    sync();
+  })();
 
   // Inquiry form: sent in the background by FormSubmit (formsubmit.co) and emailed to BOOKING_EMAIL.
   var form = document.getElementById('inquiry');
