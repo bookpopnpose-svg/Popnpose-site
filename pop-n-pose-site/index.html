@@ -1,1317 +1,847 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-CA">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pop N Pose Photobooth — Toronto Open-Air Photobooth Rentals</title>
-<meta name="description" content="Open-air photobooth rentals for weddings, parties and corporate events in Toronto. Pop the flash, strike a pose, print in seconds.">
+<title>Pop N Pose Photobooth · Strike a pose. We'll do the rest.</title>
+<meta name="description" content="Open-air photobooth rentals for weddings, showers, birthdays and corporate events across Toronto & the GTA. DSLR-quality photos, prints in about 8 seconds.">
+
+<link rel="canonical" href="https://popnpose.ca/">
+
+<!-- ===== Link-preview card (WhatsApp, iMessage, Facebook, LinkedIn, Slack, email) =====
+     These must be full web addresses. They point at popnpose.ca, where the site will live.
+     If you share the site from a different address, change the 5 lines marked ★. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pop N Pose Photobooth">
+<meta property="og:locale" content="en_CA">
+<meta property="og:title" content="Pop N Pose Photobooth · Strike a pose. We'll do the rest.">
+<meta property="og:description" content="Open-air photobooth rentals across Toronto & the GTA. DSLR-quality photos, prints in ~8 seconds, packages from $499.">
+<meta property="og:url" content="https://popnpose.ca/"><!-- ★ -->
+<meta property="og:image" content="https://popnpose.ca/og-image.jpg"><!-- ★ -->
+<meta property="og:image:secure_url" content="https://popnpose.ca/og-image.jpg"><!-- ★ -->
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pop N Pose Photobooth: Strike a pose. We'll do the rest. Open-air photobooth rentals in Toronto and the GTA.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pop N Pose Photobooth · Strike a pose. We'll do the rest.">
+<meta name="twitter:description" content="Open-air photobooth rentals across Toronto & the GTA. Prints in ~8 seconds, packages from $499.">
+<meta name="twitter:image" content="https://popnpose.ca/og-image.jpg"><!-- ★ -->
+<meta name="theme-color" content="#0E0D0B">
+
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
+
+<!-- Helps Google show the business properly in search -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Pop N Pose Photobooth",
+  "description": "Open-air photobooth rentals for weddings, showers, birthdays and corporate events in Toronto and the GTA.",
+  "url": "https://popnpose.ca/",
+  "image": "https://popnpose.ca/og-image.jpg",
+  "email": "Bookpopnpose@gmail.com",
+  "priceRange": "$499–$799",
+  "address": {"@type": "PostalAddress", "addressLocality": "Toronto", "addressRegion": "ON", "addressCountry": "CA"},
+  "areaServed": ["Toronto", "Mississauga", "Vaughan", "Oakville", "Greater Toronto Area"]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=Work+Sans:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Caveat:wght@500;600;700&display=swap');
+:root{
+  --ink:#0E0D0B;
+  --ink-2:#1A1814;
+  --ink-soft:#4A453C;
+  --paper:#FFFDF8;
+  --cream:#F6EFDF;
+  --line:#E7DDC6;
+  --gold:#C9A042;          /* decorative gold */
+  --gold-light:#E2C477;    /* gold on black */
+  --gold-ink:#7A5C17;      /* gold text on white (AA) */
+  --gold-grad:linear-gradient(135deg,#8C6A1E 0%,#E6C873 38%,#B8892E 62%,#F3DC8E 100%);
+  --gold-text:linear-gradient(120deg,#7A5C17 0%,#C9A042 45%,#8C6A1E 75%,#B8892E 100%); /* richer gold for text on white */
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"Work Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --hand:"Caveat","Comic Sans MS",cursive;
+  --r:18px;
+  --wrap:1180px;
+  --shadow:0 18px 40px -18px rgba(14,13,11,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.serif{font-family:var(--serif)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-ink)}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--gold-grad);border-radius:2px}
+.dark .eyebrow{color:var(--gold-light)}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.05;letter-spacing:-.02em;font-variation-settings:"SOFT" 60,"WONK" 0}
+h2{font-size:clamp(2.1rem,4.4vw,3.4rem);margin:.4rem 0 1rem}
+em.gold,.gold-text{font-style:italic;background:var(--gold-text);-webkit-background-clip:text;background-clip:text;color:transparent;font-variation-settings:"SOFT" 100,"WONK" 1;padding-right:.06em}
+.lede{font-size:1.08rem;color:var(--ink-soft);max-width:36rem}
+.dark .lede{color:#CFC7B6}
+.dark em.gold,footer .gold-text{background-image:var(--gold-grad)}
+section{position:relative}
+.pad{padding:clamp(72px,9vw,120px) 0}
+.center{text-align:center}
+.center .lede{margin-left:auto;margin-right:auto}
 
-  :root{
-    --ink:#0D0D0D;
-    --paper:#FFFFFF;
-    --fog:#F2F2F0;
-    --mid:#6D6D69;
-    --mid-dark:#B7B7B2;
-    --line: rgba(13,13,13,0.14);
-    --line-on-dark: rgba(255,255,255,0.20);
-    --shadow: 0 20px 44px rgba(13,13,13,0.14);
-    --shadow-lg: 0 30px 70px rgba(13,13,13,0.22);
-    --radius: 2px;
-    --maxw: 1180px;
-  }
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;font:600 .98rem/1 var(--sans);padding:1rem 1.5rem;border-radius:999px;text-decoration:none;border:2px solid var(--ink);transition:transform .2s ease,box-shadow .2s ease,background .2s;cursor:pointer}
+.btn:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:var(--paper);box-shadow:0 8px 0 -2px var(--gold)}
+.btn-dark:hover{box-shadow:0 10px 0 -2px var(--gold)}
+.btn-line{background:transparent;color:var(--ink)}
+.btn-line:hover{background:var(--cream)}
+.btn-gold{background:var(--gold-grad);color:var(--ink);border-color:transparent;box-shadow:0 10px 30px -10px rgba(201,160,66,.7)}
+.btn:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
-  }
+/* sparkle */
+.spark{position:absolute;width:22px;height:22px;color:var(--gold);pointer-events:none;animation:twinkle 3.2s ease-in-out infinite}
+.spark svg{width:100%;height:100%;display:block}
+@keyframes twinkle{0%,100%{transform:scale(.7) rotate(0);opacity:.5}50%{transform:scale(1.1) rotate(25deg);opacity:1}}
 
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Work Sans', sans-serif;
-    font-size:16px;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
+/* ===== Top ribbon ===== */
+.ribbon{background:var(--ink);color:var(--gold-light);text-align:center;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;padding:.55rem 1rem;font-weight:600}
+.ribbon span{color:#fff;opacity:.75;letter-spacing:.06em;text-transform:none;font-weight:500}
 
-  h1,h2,h3,h4{
-    font-family:'Fraunces', serif;
-    font-weight:500;
-    margin:0;
-    letter-spacing:-0.01em;
-    color:var(--ink);
-  }
+/* ===== Nav ===== */
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,253,248,.86);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{width:44px;height:44px;object-fit:contain}
+.brand b{font-family:var(--serif);font-size:1.25rem;font-weight:600;letter-spacing:-.01em;line-height:1}
+.brand b i{font-style:italic;color:var(--gold-ink);font-variation-settings:"WONK" 1}
+.brand small{display:block;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-soft);margin-top:4px}
+.nav ul{display:flex;gap:28px;list-style:none}
+.nav ul a{text-decoration:none;font-weight:500;font-size:.95rem;position:relative}
+.nav ul a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--gold-grad);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nav ul a:hover::after{transform:scaleX(1)}
+.nav .btn{padding:.8rem 1.15rem;font-size:.9rem;box-shadow:0 6px 0 -2px var(--gold)}
 
-  a{color:inherit;}
-  img{max-width:100%; display:block;}
+/* ===== Hero ===== */
+.hero{overflow:hidden;background:
+  radial-gradient(60% 60% at 85% 30%,rgba(226,196,119,.28),transparent 70%),
+  radial-gradient(40% 50% at 5% 90%,rgba(226,196,119,.18),transparent 70%),var(--paper)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding-top:clamp(48px,7vw,90px);padding-bottom:clamp(56px,7vw,96px)}
+.hero h1{font-size:clamp(3rem,7vw,5.6rem);margin:1.1rem 0 1.4rem}
+.hero h1 .line2{display:block}
+.hero .lede{font-size:1.15rem}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:2rem}
+.stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:2.4rem}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:.7rem 1rem;display:flex;align-items:baseline;gap:.5rem;box-shadow:0 6px 18px -12px rgba(14,13,11,.25)}
+.stat b{font-family:var(--serif);font-size:1.5rem;font-weight:600}
+.stat b .star{color:var(--gold)}
+.stat span{font-size:.85rem;color:var(--ink-soft)}
 
-  .wrap{
-    max-width:var(--maxw);
-    margin:0 auto;
-    padding:0 32px;
-  }
+.stage{position:relative;height:560px;max-width:520px;margin-left:auto;width:100%}
+.arch{position:absolute;left:12%;right:12%;bottom:0;top:30px;border-radius:999px 999px 28px 28px;background:
+  radial-gradient(70% 45% at 50% 30%,rgba(255,255,255,.55),transparent 70%),var(--gold-grad);box-shadow:var(--shadow)}
+.arch::after{content:"";position:absolute;inset:12px;border-radius:999px 999px 20px 20px;border:1.5px solid rgba(255,255,255,.65)}
+.stage .booth{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);height:440px;width:auto;filter:drop-shadow(0 24px 22px rgba(0,0,0,.35));z-index:2}
+.stage .floor{position:absolute;left:22%;right:22%;bottom:14px;height:22px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.35),transparent);z-index:1}
+.strip{position:absolute;background:#fff;padding:8px 8px 24px;border-radius:6px;box-shadow:0 18px 30px -14px rgba(14,13,11,.5);z-index:3;width:104px}
+.strip .f{height:76px;border-radius:3px;margin-bottom:6px;overflow:hidden;background:var(--ink)}
+.strip .f:last-of-type{margin-bottom:0}
+.strip .f svg{width:100%;height:100%;display:block}
+.strip p{position:absolute;bottom:5px;left:0;right:0;text-align:center;font:700 .55rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold-ink)}
+.strip.s1{left:-4%;top:70px;transform:rotate(-9deg);animation:bob 6s ease-in-out infinite}
+.strip.s2{right:-3%;top:180px;transform:rotate(8deg);animation:bob 6s ease-in-out -3s infinite}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.note{position:absolute;font-family:var(--hand);font-size:1.6rem;line-height:1;color:var(--ink);z-index:4}
+.note.n1{left:-2%;bottom:70px;transform:rotate(-6deg)}
+.note.n1 svg{width:58px;height:40px;display:block;margin:4px 0 0 60px;color:var(--gold-ink)}
+.stamp{position:absolute;right:2%;top:0;width:118px;height:118px;border-radius:50%;background:#fff;box-shadow:var(--shadow);z-index:4;display:grid;place-items:center;animation:spin 22s linear infinite}
+.stamp img{width:104px;height:104px;object-fit:contain}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-  .eyebrow{
-    font-family:'Space Mono', monospace;
-    font-size:12px;
-    letter-spacing:0.16em;
-    text-transform:uppercase;
-    color:var(--mid);
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .eyebrow::before{
-    content:"";
-    width:22px;
-    height:1px;
-    background:var(--ink);
-    display:inline-block;
-  }
+/* ===== Ticker ===== */
+.ticker{background:var(--ink);color:var(--gold-light);overflow:hidden;border-block:1px solid #2A261F}
+.ticker .track{display:flex;width:max-content;animation:marquee 32s linear infinite}
+.ticker span{font:600 .9rem/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;padding:1.1rem 1.4rem;white-space:nowrap;display:flex;align-items:center;gap:1.4rem}
+.ticker span i{font-style:normal;color:#fff}
+@keyframes marquee{to{transform:translateX(-50%)}}
 
-  /* Scroll reveal */
-  .reveal{
-    opacity:0;
-    transform:translateY(24px);
-    transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);
-  }
-  .reveal.is-visible{ opacity:1; transform:translateY(0); }
-  .reveal-stagger.is-visible > *{ transition-delay: calc(var(--i, 0) * 90ms); }
+/* ===== How it works ===== */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:3rem;counter-reset:s}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:2rem 1.7rem 1.8rem;position:relative;transition:transform .25s,box-shadow .25s}
+.step:hover{transform:translateY(-4px) rotate(-.4deg);box-shadow:var(--shadow)}
+.step .count{font-family:var(--serif);font-size:4.6rem;line-height:.9;font-weight:600;font-style:italic;font-variation-settings:"SOFT" 100,"WONK" 1;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent;display:block;margin-bottom:.6rem}
+.step:last-child{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.step:last-child p{color:#CFC7B6}
+.step h3{font-size:1.55rem;margin-bottom:.6rem}
+.step p{color:var(--ink-soft);font-size:.98rem}
+.step .tag{position:absolute;top:18px;right:18px;font-family:var(--hand);font-size:1.4rem;color:var(--gold-ink);transform:rotate(6deg)}
+.step:last-child .tag{color:var(--gold-light)}
 
-  /* Buttons */
-  .btn{
-    font-family:'Work Sans', sans-serif;
-    font-weight:600;
-    font-size:14.5px;
-    letter-spacing:0.01em;
-    padding:14px 26px;
-    border-radius:var(--radius);
-    border:1px solid transparent;
-    cursor:pointer;
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    text-decoration:none;
-    transition:transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
-  }
-  .btn:focus-visible, a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
-    outline:2px solid var(--ink);
-    outline-offset:3px;
-  }
-  .btn-primary{
-    background:var(--ink);
-    color:var(--paper);
-  }
-  .btn-primary:hover{ transform:translateY(-2px); box-shadow:var(--shadow); }
-  .btn-ghost{
-    background:transparent;
-    color:var(--ink);
-    border-color:var(--ink);
-  }
-  .btn-ghost:hover{ transform:translateY(-2px); background:var(--ink); color:var(--paper); }
-  .btn-invert{
-    background:var(--paper);
-    color:var(--ink);
-  }
-  .btn-invert:hover{ transform:translateY(-2px); box-shadow:0 20px 44px rgba(255,255,255,0.12); }
+/* ===== Booth (dark) ===== */
+.dark{background:var(--ink);color:var(--paper)}
+.booth-sec{overflow:hidden;background:radial-gradient(50% 60% at 20% 50%,rgba(201,160,66,.22),transparent 70%),var(--ink)}
+.booth-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
+.booth-visual{position:relative;height:520px;display:grid;place-items:center}
+.booth-visual .arch{position:absolute;left:50%;bottom:0;top:20px;width:300px;transform:translateX(-50%);border-radius:999px 999px 26px 26px;background:radial-gradient(70% 45% at 50% 30%,rgba(255,255,255,.5),transparent 70%),var(--gold-grad);box-shadow:0 0 80px -10px rgba(201,160,66,.45)}
+.booth-visual .arch::after{content:"";position:absolute;inset:10px;border-radius:999px 999px 18px 18px;border:1.5px solid rgba(255,255,255,.6)}
+.booth-visual .ring{position:absolute;left:50%;top:50%;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;border:1.5px dashed rgba(226,196,119,.35);animation:spin 40s linear infinite}
+.booth-visual .booth{height:440px;width:auto;position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:2;filter:drop-shadow(0 20px 20px rgba(0,0,0,.45))}
+.booth-visual .detail{position:absolute;right:0;bottom:70px;width:170px;height:170px;border-radius:50%;border:5px solid var(--paper);box-shadow:0 0 0 3px var(--gold),0 20px 40px -10px #000;z-index:3;overflow:hidden;background:var(--cream)}
+.booth-visual .detail img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;transform:scale(1.35)}
+.booth-visual .detail-cap{position:absolute;right:0;bottom:26px;font-family:var(--hand);font-size:1.35rem;line-height:1;color:var(--gold-light);background:var(--ink);border:1px solid rgba(226,196,119,.5);padding:.3rem .8rem .4rem;border-radius:999px;transform:rotate(-3deg);z-index:4}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:2.2rem}
+.feat div{border:1px solid #2E2A22;background:var(--ink-2);border-radius:16px;padding:1.1rem 1rem;transition:border-color .2s,transform .2s}
+.feat div:hover{border-color:var(--gold);transform:translateY(-3px)}
+.feat svg{width:30px;height:30px;color:var(--gold-light);margin-bottom:.6rem}
+.feat b{display:block;font-weight:600;font-size:.98rem}
+.feat span{font-size:.85rem;color:#A9A090}
 
-  /* ===== Header ===== */
-  header{
-    position:fixed;
-    top:0; left:0; right:0;
-    z-index:100;
-    background:rgba(255,255,255,0.88);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:16px 32px;
-    max-width:var(--maxw);
-    margin:0 auto;
-  }
-  .logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    text-decoration:none;
-    color:var(--ink);
-  }
-  .logo-mark{ width:42px; height:42px; flex-shrink:0; object-fit:contain; }
-  .logo-text{
-    font-family:'Fraunces', serif;
-    font-size:18px;
-    font-weight:600;
-    letter-spacing:0.01em;
-    line-height:1.1;
-  }
-  .logo-text small{
-    display:block;
-    font-family:'Space Mono', monospace;
-    font-size:9px;
-    letter-spacing:0.2em;
-    color:var(--mid);
-    font-weight:400;
-    text-transform:uppercase;
-    margin-top:2px;
-  }
-  .nav-links{
-    display:flex;
-    align-items:center;
-    gap:34px;
-    list-style:none;
-    margin:0; padding:0;
-  }
-  .nav-links a{
-    text-decoration:none;
-    font-size:14.5px;
-    font-weight:500;
-    color:var(--ink);
-    position:relative;
-    padding-bottom:3px;
-  }
-  .nav-links a::after{
-    content:"";
-    position:absolute;
-    left:0; bottom:0;
-    width:0; height:1px;
-    background:var(--ink);
-    transition:width .2s ease;
-  }
-  .nav-links a:hover::after{ width:100%; }
-  .nav-cta{ display:flex; align-items:center; gap:18px; }
-  .menu-btn{
-    display:none;
-    background:none;
-    border:1px solid var(--ink);
-    padding:8px 10px;
-    border-radius:var(--radius);
-    cursor:pointer;
-  }
-  .menu-btn span{ display:block; width:18px; height:1.5px; background:var(--ink); margin:4px 0; }
+/* ===== Occasions ===== */
+.occ{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:3rem}
+.occ article{border-radius:var(--r);padding:1.7rem 1.4rem;min-height:250px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:transform .25s}
+.occ article:hover{transform:translateY(-5px) rotate(.6deg)}
+.occ article:nth-child(1){background:var(--gold-grad)}
+.occ article:nth-child(2){background:var(--ink);color:var(--paper)}
+.occ article:nth-child(3){background:var(--cream)}
+.occ article:nth-child(4){background:#fff;border:2px solid var(--ink)}
+.occ .ic{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.7);margin-bottom:auto}
+.occ article:nth-child(2) .ic{background:#24211B;color:var(--gold-light)}
+.occ article:nth-child(4) .ic{background:var(--cream)}
+.occ .ic svg{width:28px;height:28px}
+.occ h3{font-size:1.5rem;margin:1.6rem 0 .5rem}
+.occ p{font-size:.93rem;line-height:1.5;opacity:.85}
 
-  /* ===== Hero ===== */
-  .hero{
-    padding:172px 0 0;
-    position:relative;
-  }
-  .hero-grid{
-    display:grid;
-    grid-template-columns:1.05fr 0.95fr;
-    gap:60px;
-    align-items:center;
-    padding-bottom:180px;
-  }
-  .hero h1{
-    font-size:clamp(40px, 5.4vw, 68px);
-    line-height:1.02;
-    margin:18px 0 22px;
-  }
-  .hero h1 em{
-    font-style:italic;
-    font-weight:400;
-  }
-  .hero p.lede{
-    font-size:18px;
-    color:var(--mid);
-    max-width:460px;
-    margin-bottom:34px;
-  }
-  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:30px;}
-  .hero-meta{
-    display:flex;
-    gap:26px;
-    font-family:'Space Mono', monospace;
-    font-size:12px;
-    color:var(--mid);
-    letter-spacing:0.04em;
-  }
+/* ===== Packages ===== */
+.pk-wrap{background:var(--cream)}
+.pk-note{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:1.4rem}
+.pk-note span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:.45rem .95rem;font-size:.85rem;font-weight:500}
+.pk-note span::before{content:"✦ ";color:var(--gold)}
+.packages{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:3rem;align-items:stretch}
+.pkg{background:#fff;border-radius:22px;padding:0 0 1.8rem;position:relative;display:flex;flex-direction:column;box-shadow:0 10px 30px -20px rgba(14,13,11,.4);border:1px solid var(--line)}
+.pkg .top{padding:1.6rem 1.7rem 1.4rem;border-bottom:2px dashed var(--line);position:relative}
+.pkg .top::before,.pkg .top::after{content:"";position:absolute;bottom:-13px;width:24px;height:24px;border-radius:50%;background:var(--cream)}
+.pkg .top::before{left:-13px}.pkg .top::after{right:-13px}
+.pkg .hrs{display:inline-block;font:700 .72rem/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;background:var(--ink);color:var(--gold-light);padding:.5rem .75rem;border-radius:999px}
+.pkg h3{font-size:2rem;margin:1rem 0 .3rem}
+.pkg .price{font-family:var(--serif);font-size:3.4rem;font-weight:600;line-height:1;letter-spacing:-.03em}
+.pkg .price small{font-family:var(--sans);font-size:.85rem;font-weight:500;color:var(--ink-soft);letter-spacing:0;margin-left:.3rem}
+.pkg .blurb{font-size:.95rem;color:var(--ink-soft);margin-top:.8rem}
+.pkg ul{list-style:none;padding:1.4rem 1.7rem 1.6rem;display:grid;gap:.7rem;flex:1}
+.pkg li{display:flex;gap:.7rem;font-size:.95rem;line-height:1.4}
+.pkg li::before{content:"";flex:0 0 18px;height:18px;margin-top:1px;border-radius:50%;background:var(--gold-grad) ;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-1.6 17.2-5-5 1.8-1.8 3.2 3.2 7-7 1.8 1.8z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-1.6 17.2-5-5 1.8-1.8 3.2 3.2 7-7 1.8 1.8z'/%3E%3C/svg%3E") center/contain no-repeat}
+.pkg .btn{margin:0 1.7rem}
+.pkg.star{background:var(--ink);color:var(--paper);border:2px solid var(--gold);transform:translateY(-14px);box-shadow:0 30px 50px -24px rgba(14,13,11,.6)}
+.pkg.star .top{border-bottom-color:#3A342A}
+.pkg.star .hrs{background:var(--gold-grad);color:var(--ink)}
+.pkg.star .price small,.pkg.star .blurb{color:#CFC7B6}
+.pkg.star .btn{border-color:transparent}
+.sticker{position:absolute;top:-22px;right:18px;background:var(--gold-grad);color:var(--ink);font-family:var(--hand);font-size:1.5rem;font-weight:700;padding:.35rem 1rem .45rem;border-radius:999px;transform:rotate(7deg);box-shadow:0 8px 18px -8px rgba(0,0,0,.5);z-index:2}
 
-  /* Booth photo stage + printing strip */
-  .booth-stage{
-    position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    padding-top:6px;
-  }
-  .booth-card{
-    background:var(--ink);
-    border-radius:8px;
-    padding:38px 30px 50px;
-    width:100%;
-    max-width:360px;
-    box-shadow:var(--shadow-lg);
-    position:relative;
-  }
-  .booth-photo-wrap{
-    position:relative;
-    display:flex;
-    justify-content:center;
-    animation:bob 5s ease-in-out infinite;
-  }
-  @keyframes bob{
-    0%, 100%{ transform:translateY(0); }
-    50%{ transform:translateY(-8px); }
-  }
-  .booth-photo{
-    width:62%;
-    filter:drop-shadow(0 18px 22px rgba(0,0,0,0.5));
-  }
-  .flash-veil{
-    position:absolute;
-    inset:0;
-    background:#FFFFFF;
-    border-radius:8px;
-    opacity:0;
-    pointer-events:none;
-    animation:flash 4.2s ease-in-out infinite;
-  }
-  @keyframes flash{
-    0%, 95.5%, 100%{ opacity:0; }
-    96.5%{ opacity:.96; }
-    98%{ opacity:0; }
-  }
-  .booth-caption{
-    text-align:center;
-    font-family:'Space Mono', monospace;
-    font-size:10px;
-    letter-spacing:0.3em;
-    color:var(--mid-dark);
-    margin-top:18px;
-  }
-  .strip-slot{
-    position:absolute;
-    bottom:-58px;
-    left:50%;
-    transform:translateX(-50%);
-    width:112px;
-    overflow:hidden;
-    height:0;
-    animation:print 4.2s ease-in-out infinite;
-  }
-  @keyframes print{
-    0%, 10%{ height:0; }
-    50%, 100%{ height:238px; }
-  }
-  .filmstrip{
-    background:var(--paper);
-    padding:8px 8px 16px;
-    border-radius:2px;
-    box-shadow:0 14px 30px rgba(13,13,13,0.32);
-  }
-  .filmstrip .frame{
-    width:100%;
-    aspect-ratio:5/4;
-    margin-bottom:7px;
-    border-radius:1px;
-    position:relative;
-    overflow:hidden;
-    background:#1c1c1c;
-  }
-  .filmstrip .frame:last-child{ margin-bottom:0; }
-  .filmstrip .frame::after{
-    content:"";
-    position:absolute; inset:0;
-    background-image: radial-gradient(circle at 30% 28%, rgba(255,255,255,0.5), transparent 45%);
-  }
-  .filmstrip .stamp{
-    font-family:'Caveat', cursive;
-    font-size:16px;
-    text-align:center;
-    color:var(--ink);
-    margin-top:4px;
-  }
+/* ===== Add-ons ===== */
+.addons{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:2.6rem}
+.addon{border:1.5px solid var(--ink);border-radius:var(--r);padding:1.3rem 1.1rem;background:#fff;position:relative;transition:background .2s,transform .2s}
+.addon:hover{background:var(--cream);transform:rotate(-1deg)}
+.addon b{font-family:var(--serif);font-size:1.2rem;font-weight:600;display:block;margin-bottom:.35rem}
+.addon b::before{content:"+ ";color:var(--gold-ink)}
+.addon p{font-size:.88rem;color:var(--ink-soft);line-height:1.45}
+.addons-foot{margin-top:1.4rem;font-family:var(--hand);font-size:1.5rem;color:var(--gold-ink)}
 
-  /* Marquee */
-  .marquee{
-    background:var(--ink);
-    color:var(--paper);
-    overflow:hidden;
-    white-space:nowrap;
-    border-top:1px solid var(--line-on-dark);
-    border-bottom:1px solid var(--line-on-dark);
-  }
-  .marquee-track{
-    display:inline-flex;
-    align-items:center;
-    animation:scroll-left 26s linear infinite;
-  }
-  .marquee-track span{
-    font-family:'Fraunces', serif;
-    font-style:italic;
-    font-weight:500;
-    font-size:20px;
-    padding:16px 34px;
-    display:inline-flex;
-    align-items:center;
-    gap:34px;
-  }
-  .marquee-track span::after{
-    content:"✦";
-    font-style:normal;
-    font-size:12px;
-    color:var(--mid-dark);
-  }
-  @keyframes scroll-left{
-    0%{ transform:translateX(0); }
-    100%{ transform:translateX(-50%); }
-  }
+/* ===== Reviews ===== */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:3.2rem}
+.polaroid{background:#fff;padding:14px 14px 22px;border-radius:6px;box-shadow:0 22px 40px -24px rgba(14,13,11,.55);transition:transform .3s}
+.polaroid:nth-child(1){transform:rotate(-2.5deg)}
+.polaroid:nth-child(2){transform:rotate(1.5deg) translateY(14px)}
+.polaroid:nth-child(3){transform:rotate(-1deg)}
+.polaroid:hover{transform:rotate(0) scale(1.02)}
+.polaroid .q{background:var(--ink);color:var(--paper);border-radius:3px;padding:1.6rem 1.4rem;min-height:210px;font-family:var(--serif);font-size:1.15rem;line-height:1.45;font-style:italic;font-variation-settings:"SOFT" 100;position:relative}
+.polaroid .q::before{content:"“";position:absolute;top:-.3rem;left:.8rem;font-size:4rem;line-height:1;color:var(--gold);font-style:normal}
+.polaroid .q p{position:relative;padding-top:1.2rem}
+.polaroid .who{font-family:var(--hand);font-size:1.45rem;margin-top:.8rem;text-align:center;line-height:1.1}
+.polaroid .who small{display:block;font-family:var(--sans);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-top:.25rem}
+.stars{color:var(--gold);letter-spacing:.2em;font-size:.95rem;font-style:normal;display:block;margin-top:1rem}
 
-  /* ===== Section shell ===== */
-  section{ padding:100px 0; }
-  .section-head{
-    max-width:640px;
-    margin-bottom:56px;
-  }
-  .brand-badge{
-    display:block;
-    width:150px;
-    height:auto;
-    margin:0 auto 28px;
-    opacity:0.94;
-  }
-  .section-head h2{
-    font-size:clamp(30px, 3.6vw, 44px);
-    margin-top:14px;
-    line-height:1.08;
-  }
-  .section-head p{
-    color:var(--mid);
-    font-size:16.5px;
-    margin-top:16px;
-    max-width:540px;
-  }
-  .section-head-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-    gap:40px;
-    margin-bottom:56px;
-  }
-  .thankyou-stamp{
-    width:132px;
-    height:auto;
-    flex-shrink:0;
-    transform:rotate(7deg);
-    filter:grayscale(1) contrast(1.05);
-    opacity:0.9;
-  }
-  .dark{ background:var(--ink); color:var(--paper); }
-  .dark .eyebrow{ color:var(--mid-dark); }
-  .dark .eyebrow::before{ background:var(--paper); }
-  .dark h2, .dark h3, .dark h4{ color:var(--paper); }
-  .dark p{ color:var(--mid-dark); }
+/* ===== FAQ ===== */
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+.faq-side{position:sticky;top:110px}
+.faq-side .badge{width:170px;margin-top:2rem;opacity:.9}
+details{border-bottom:1px solid var(--line);padding:1.25rem 0}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font-family:var(--serif);font-size:1.3rem;font-weight:500}
+summary::-webkit-details-marker{display:none}
+summary .pm{flex:0 0 36px;height:36px;border-radius:50%;border:1.5px solid var(--ink);position:relative;transition:background .2s,transform .3s}
+summary .pm::before,summary .pm::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:2px;background:currentColor;transform:translate(-50%,-50%)}
+summary .pm::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .3s}
+details[open] summary .pm{background:var(--gold-grad);border-color:transparent;transform:rotate(180deg)}
+details[open] summary .pm::after{transform:translate(-50%,-50%) rotate(0)}
+details p{color:var(--ink-soft);padding-top:.8rem;max-width:40rem}
 
-  /* ===== How it works ===== */
-  .steps{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:0;
-    border-top:1px solid var(--line);
-  }
-  .step{
-    padding:34px 30px 34px 0;
-    border-right:1px solid var(--line);
-    position:relative;
-    transition:background .25s ease;
-  }
-  .step:hover{ background:var(--fog); }
-  .step:last-child{ border-right:none; padding-right:0; }
-  .step:not(:first-child){ padding-left:34px; }
-  .step-num{
-    font-family:'Space Mono', monospace;
-    font-size:13px;
-    color:var(--paper);
-    background:var(--ink);
-    display:inline-block;
-    padding:3px 9px;
-    border-radius:2px;
-    margin-bottom:18px;
-  }
-  .step h3{ font-size:22px; margin-bottom:10px; }
-  .step p{ color:var(--mid); font-size:15px; margin:0; }
+/* ===== Contact ===== */
+.contact{background:radial-gradient(50% 70% at 90% 10%,rgba(201,160,66,.25),transparent 70%),var(--ink);color:var(--paper);overflow:hidden}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.contact h2{font-size:clamp(2.6rem,5.5vw,4.4rem)}
+.contact-list{list-style:none;margin-top:2rem;display:grid;gap:1rem}
+.contact-list li{display:flex;gap:14px;align-items:center}
+.contact-list .i{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(226,196,119,.5);display:grid;place-items:center;color:var(--gold-light);flex:0 0 44px}
+.contact-list .i svg{width:20px;height:20px}
+.contact-list small{display:block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#A9A090}
+.contact-list a{text-decoration:none;font-weight:600;border-bottom:1px solid rgba(226,196,119,.5)}
+.form{color:var(--ink);border-radius:28px;padding:clamp(1.5rem,3.5vw,2.4rem);box-shadow:0 30px 60px -20px #000;position:relative;border:6px solid transparent;background:linear-gradient(var(--paper),var(--paper)) padding-box,var(--gold-grad) border-box}
+.form h3{font-size:1.7rem;margin-bottom:.3rem}
+.form .sub{font-size:.92rem;color:var(--ink-soft);margin-bottom:1.3rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.field label{font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.field input,.field select,.field textarea{font:inherit;font-size:1rem;padding:.8rem .95rem;border-radius:12px;border:1.5px solid var(--line);background:#fff;color:var(--ink);width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);outline:none;box-shadow:0 0 0 4px rgba(201,160,66,.2)}
+.field textarea{min-height:110px;resize:vertical}
+.form .btn{width:100%;margin-top:.4rem}
+.form .ok{display:none;margin-top:1rem;background:var(--cream);border-radius:12px;padding:.9rem 1rem;font-size:.92rem}
+.form.sent .ok{display:block}
 
-  /* ===== Meet the booth (equipment) ===== */
-  .rigs{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:1px;
-    background:var(--line);
-    border:1px solid var(--line);
-  }
-  .rigs-single{
-    grid-template-columns:1fr;
-    max-width:520px;
-    margin:0 auto;
-    border-radius:6px;
-    overflow:hidden;
-  }
-  .rig{
-    background:var(--paper);
-    padding:48px 40px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-    position:relative;
-  }
-  .rig-photo-wrap{
-    height:280px;
-    display:flex;
-    align-items:flex-end;
-    margin-bottom:28px;
-    transition:transform .35s cubic-bezier(.2,.8,.2,1);
-  }
-  .rig:hover .rig-photo-wrap{ transform:translateY(-6px) scale(1.02); }
-  .rig-photo{
-    height:100%;
-    width:auto;
-    filter:drop-shadow(0 22px 26px rgba(13,13,13,0.22));
-  }
-  .rig-tag{
-    font-family:'Space Mono', monospace;
-    font-size:11.5px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--mid);
-  }
-  .rig h3{ font-size:26px; margin:12px 0 10px; }
-  .rig p.desc{ font-size:15px; color:var(--mid); max-width:340px; margin-bottom:22px; }
-  .rig-feats{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:8px;
-    list-style:none;
-    padding:0; margin:0;
-  }
-  .rig-feats li{
-    font-family:'Space Mono', monospace;
-    font-size:11px;
-    letter-spacing:0.04em;
-    padding:6px 12px;
-    border:1px solid var(--line);
-    border-radius:20px;
-  }
+/* ===== Footer ===== */
+footer{background:var(--ink);color:#A9A090;border-top:1px solid #2A261F;padding:56px 0 36px}
+.foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px}
+.foot img{width:190px}
+.foot nav{display:flex;flex-wrap:wrap;gap:22px}
+.foot nav a{text-decoration:none;color:var(--paper);font-weight:500}
+.foot nav a:hover{color:var(--gold-light)}
+.foot-slogan{font-family:var(--serif);font-size:clamp(2.2rem,7vw,5.5rem);font-weight:600;letter-spacing:-.02em;text-align:center;margin:42px 0 26px;line-height:1;color:var(--paper)}
+.foot-slogan i{font-style:italic;font-variation-settings:"SOFT" 100,"WONK" 1}
+.foot-slogan .dot{color:var(--gold)}
+.copy{text-align:center;font-size:.85rem;border-top:1px solid #2A261F;padding-top:24px}
 
-  /* ===== Feature rows (built for beautiful results) ===== */
-  .feat-row{
-    display:grid;
-    grid-template-columns:0.85fr 1fr;
-    gap:64px;
-    align-items:center;
-    padding:44px 0;
-    border-top:1px solid var(--line);
-  }
-  .feat-row:last-of-type{ border-bottom:1px solid var(--line); }
-  .feat-reverse{ grid-template-columns:1fr 0.85fr; }
-  .feat-reverse .feat-photo{ order:2; }
-  .feat-reverse .feat-copy{ order:1; }
-  .feat-photo{
-    background:var(--fog);
-    border-radius:6px;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:28px;
-    transition:transform .35s cubic-bezier(.2,.8,.2,1);
-  }
-  .feat-row:hover .feat-photo{ transform:translateY(-4px); }
-  .feat-photo img{
-    width:100%;
-    max-width:340px;
-    border-radius:4px;
-    filter:drop-shadow(0 18px 26px rgba(13,13,13,0.18));
-  }
-  .feat-num{
-    font-family:'Space Mono', monospace;
-    font-size:12px;
-    letter-spacing:0.1em;
-    color:var(--mid);
-  }
-  .feat-copy h3{ font-size:26px; margin:12px 0 12px; }
-  .feat-copy p{ font-size:15.5px; color:var(--mid); max-width:440px; margin:0; }
+/* camera flash */
+.flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:999}
+.flash.go{animation:flash .5s ease-out}
+@keyframes flash{0%{opacity:0}12%{opacity:.92}100%{opacity:0}}
 
-  /* ===== Occasions ===== */
-  .occasions{
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    gap:1px;
-    background:var(--line);
-    border:1px solid var(--line);
-    border-radius:6px;
-    overflow:hidden;
-  }
-  .occasion{
-    background:var(--paper);
-    padding:30px 24px;
-    transition:background .25s ease, transform .25s ease;
-  }
-  .occasion:hover{ background:var(--fog); transform:translateY(-3px); }
-  .occasion h4{ font-size:18px; margin-bottom:8px; }
-  .occasion p{ font-size:14px; color:var(--mid); margin:0; }
+/* reveal on scroll (only when JS runs) */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.js .reveal.in{opacity:1;transform:none}
 
-  /* ===== Packages ===== */
-  .pkg-grid{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:24px;
-  }
-  .pkg{
-    background:var(--fog);
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:34px 28px;
-    display:flex;
-    flex-direction:column;
-    position:relative;
-    transition:transform .25s ease, box-shadow .25s ease;
-  }
-  .pkg:hover{ transform:translateY(-4px); box-shadow:var(--shadow); }
-  .pkg.featured{
-    background:var(--ink);
-    color:var(--paper);
-    border-color:var(--ink);
-    transform:translateY(-10px);
-    box-shadow:var(--shadow);
-  }
-  .pkg.featured:hover{ transform:translateY(-14px); }
-  .pkg.featured .pkg-tag{ color:var(--mid-dark); }
-  .pkg.featured p, .pkg.featured li{ color:var(--mid-dark); }
-  .pkg.featured h3{ color:var(--paper); }
-  .pkg.featured .pkg-price{ color:var(--paper); }
-  .pkg.featured hr{ border-color:var(--line-on-dark); }
-  .pkg.featured li::before{ color:var(--paper); }
-  .pkg-tag{
-    font-family:'Space Mono', monospace;
-    font-size:11.5px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--mid);
-  }
-  .pkg h3{ font-size:26px; margin:12px 0 6px; }
-  .pkg-price{
-    font-family:'Fraunces', serif;
-    font-size:34px;
-    font-weight:500;
-    margin-bottom:4px;
-  }
-  .pkg-price span{ font-family:'Work Sans', sans-serif; font-size:14px; font-weight:400; color:var(--mid); }
-  .pkg p.desc{ font-size:14.5px; color:var(--mid); margin-bottom:20px; }
-  .pkg hr{ border:none; border-top:1px solid var(--line); margin:0 0 20px; }
-  .pkg ul{ list-style:none; margin:0 0 28px; padding:0; flex-grow:1; }
-  .pkg li{
-    font-size:14.5px;
-    padding:7px 0;
-    display:flex;
-    gap:10px;
-    color:var(--mid);
-  }
-  .pkg li::before{
-    content:"✦";
-    color:var(--ink);
-    font-size:12px;
-    margin-top:3px;
-  }
-  .pkg .btn{ justify-content:center; width:100%; }
-  .pkg.featured .btn-ghost{ background:var(--paper); color:var(--ink); border-color:var(--paper); }
-  .pkg.featured .btn-ghost:hover{ background:transparent; color:var(--paper); }
-
-  /* ===== Extras ===== */
-  .extras{
-    display:grid;
-    grid-template-columns:repeat(5, 1fr);
-    gap:1px;
-    background:var(--line);
-    border:1px solid var(--line);
-    border-radius:6px;
-    overflow:hidden;
-  }
-  .extra{
-    background:var(--paper);
-    padding:28px 22px;
-    transition:background .25s ease, transform .25s ease;
-  }
-  .extra:hover{ background:var(--fog); transform:translateY(-3px); }
-  .extra .ex-icon{ margin-bottom:14px; }
-  .extra h4{ font-size:17px; margin-bottom:6px; }
-  .extra p{ font-size:14px; color:var(--mid); margin:0; }
-
-  /* ===== Testimonials ===== */
-  .guestbook{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:24px;
-  }
-  .g-card{
-    background:var(--fog);
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:28px 26px;
-    transition:transform .25s ease, box-shadow .25s ease;
-  }
-  .g-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow); }
-  .g-card .quote{
-    font-family:'Caveat', cursive;
-    font-size:23px;
-    line-height:1.4;
-    color:var(--ink);
-  }
-  .g-card .who{
-    font-family:'Space Mono', monospace;
-    font-size:12px;
-    color:var(--mid);
-    margin-top:16px;
-    letter-spacing:0.03em;
-  }
-
-  /* ===== FAQ ===== */
-  .faq{ max-width:760px; }
-  details{
-    border-top:1px solid var(--line);
-    padding:22px 0;
-  }
-  details:last-of-type{ border-bottom:1px solid var(--line); }
-  summary{
-    cursor:pointer;
-    list-style:none;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-family:'Fraunces', serif;
-    font-size:19px;
-    font-weight:500;
-    gap:20px;
-  }
-  summary::-webkit-details-marker{ display:none; }
-  summary .plus{
-    font-family:'Space Mono', monospace;
-    font-size:20px;
-    color:var(--mid);
-    flex-shrink:0;
-    transition:transform .2s ease;
-  }
-  details[open] summary .plus{ transform:rotate(45deg); }
-  details p{
-    margin:14px 0 0;
-    color:var(--mid);
-    font-size:15.5px;
-    max-width:600px;
-  }
-
-  /* ===== Contact ===== */
-  .contact-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:70px;
-  }
-  .contact-info h3{ color:var(--paper); font-size:24px; margin-bottom:14px; }
-  .contact-info p{ margin-bottom:26px; }
-  .contact-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:14px; }
-  .contact-list a{ text-decoration:none; color:var(--paper); font-weight:500; border-bottom:1px solid var(--line-on-dark); padding-bottom:2px; }
-  .contact-list span{ display:block; font-family:'Space Mono', monospace; font-size:11px; color:var(--mid-dark); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px; }
-
-  form{ display:flex; flex-direction:column; gap:16px; }
-  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-  label{
-    font-family:'Space Mono', monospace;
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:0.1em;
-    color:var(--mid-dark);
-    margin-bottom:6px;
-    display:block;
-  }
-  input, textarea, select{
-    width:100%;
-    background:transparent;
-    border:none;
-    border-bottom:1px solid var(--line-on-dark);
-    color:var(--paper);
-    font-family:'Work Sans', sans-serif;
-    font-size:15px;
-    padding:9px 2px;
-    transition:border-color .2s ease;
-  }
-  input:focus, textarea:focus, select:focus{ border-color:var(--paper); }
-  input::placeholder, textarea::placeholder{ color:#6b6b68; }
-  textarea{ resize:vertical; min-height:70px; }
-  form .btn{ margin-top:10px; align-self:flex-start; }
-
-  /* ===== Footer ===== */
-  footer{
-    background:var(--ink);
-    border-top:1px solid var(--line-on-dark);
-    padding:44px 0 30px;
-  }
-  .foot-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:20px;
-  }
-  .foot-row .logo-text{ color:var(--paper); }
-  .foot-links{ display:flex; gap:26px; list-style:none; padding:0; margin:0; }
-  .foot-links a{ color:var(--mid-dark); text-decoration:none; font-size:14px; }
-  .foot-links a:hover{ color:var(--paper); }
-  .foot-bottom{
-    margin-top:34px;
-    padding-top:22px;
-    border-top:1px solid var(--line-on-dark);
-    display:flex;
-    justify-content:space-between;
-    color:#5a5a57;
-    font-size:12.5px;
-    font-family:'Space Mono', monospace;
-    flex-wrap:wrap;
-    gap:10px;
-  }
-
-  /* ===== Responsive ===== */
-  @media (max-width:980px){
-    .hero-grid{ grid-template-columns:1fr; }
-    .booth-stage{ order:-1; padding-bottom:200px; }
-    .steps{ grid-template-columns:1fr; }
-    .step{ border-right:none; border-bottom:1px solid var(--line); padding:26px 0 !important; }
-    .step:last-child{ border-bottom:none; }
-    .rigs{ grid-template-columns:1fr; }
-    .feat-row, .feat-reverse{ grid-template-columns:1fr; gap:28px; }
-    .feat-reverse .feat-photo{ order:1; }
-    .feat-reverse .feat-copy{ order:2; }
-    .feat-photo img{ max-width:220px; }
-    .occasions{ grid-template-columns:1fr 1fr; }
-    .pkg-grid{ grid-template-columns:1fr; }
-    .pkg.featured{ transform:none; }
-    .pkg.featured:hover{ transform:translateY(-4px); }
-    .extras{ grid-template-columns:1fr 1fr; }
-    .extra:nth-child(5){ grid-column:1 / -1; }
-    .guestbook{ grid-template-columns:1fr; }
-    .thankyou-stamp{ display:none; }
-    .contact-grid{ grid-template-columns:1fr; gap:44px; }
-    .nav-links{ display:none; }
-    .nav-links.open{
-      display:flex;
-      flex-direction:column;
-      position:absolute;
-      top:64px;
-      right:20px;
-      background:var(--paper);
-      padding:18px 24px;
-      border:1px solid var(--line);
-      border-radius:4px;
-      gap:16px;
-      box-shadow:var(--shadow);
-    }
-    .menu-btn{ display:block; }
-  }
-  @media (max-width:600px){
-    .wrap{ padding:0 20px; }
-    .hero{ padding-top:150px; }
-    .form-row{ grid-template-columns:1fr; }
-    .extras{ grid-template-columns:1fr; }
-    .occasions{ grid-template-columns:1fr; }
-    .foot-row{ flex-direction:column; align-items:flex-start; }
-    .marquee-track span{ font-size:16px; padding:14px 22px; }
-    .nav{ padding:12px 16px; }
-    .logo{ gap:8px; }
-    .logo-mark{ width:34px; height:34px; }
-    .logo-text{ font-size:14.5px; white-space:nowrap; }
-    .logo-text small{ font-size:8px; letter-spacing:0.12em; }
-    .nav-cta{ gap:8px; }
-    .nav-cta .btn-primary{ padding:9px 12px; font-size:12px; white-space:nowrap; }
-    .menu-btn{ padding:7px 8px; }
-  }
+/* ===== Responsive ===== */
+@media (max-width:1020px){
+  .addons{grid-template-columns:repeat(3,1fr)}
+  .occ{grid-template-columns:repeat(2,1fr)}
+  .feat{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:860px){
+  body{font-size:16px}
+  .nav ul{display:none}
+  .hero .wrap,.booth-grid,.faq-grid,.contact-grid{grid-template-columns:1fr}
+  .stage{margin:0 auto;height:500px}
+  .steps,.packages,.reviews{grid-template-columns:1fr}
+  .pkg.star{transform:none}
+  .packages{gap:34px}
+  .faq-side{position:static}
+  .faq-side .badge{display:none}
+  .booth-visual{height:470px;order:2}
+  .reviews .polaroid{transform:none!important;max-width:460px;margin:0 auto;width:100%}
+}
+@media (max-width:560px){
+  .wrap{padding:0 16px}
+  .ribbon{font-size:.68rem;letter-spacing:.08em}
+  .ribbon span{display:none}
+  .nav .wrap{height:64px}
+  .brand b{font-size:1.1rem}
+  .brand small{display:none}
+  .brand img{width:38px;height:38px}
+  .nav .btn{padding:.7rem .95rem;font-size:.82rem}
+  .hero h1{font-size:clamp(2.6rem,12vw,3.4rem)}
+  .stage{height:430px}
+  .stage .booth{height:350px}
+  .strip{width:86px;padding:6px 6px 20px}
+  .strip .f{height:62px}
+  .strip.s1{left:0;top:60px}
+  .strip.s2{right:0;top:150px}
+  .stamp{width:92px;height:92px}
+  .stamp img{width:80px;height:80px}
+  .note{font-size:1.35rem}
+  .note.n1{left:0;bottom:46px}
+  .occ,.addons,.row{grid-template-columns:1fr}
+  .occ article{min-height:0}
+  .feat{grid-template-columns:1fr 1fr;gap:10px}
+  .booth-visual{height:420px}
+  .booth-visual .ring{width:330px;height:330px;margin:-165px 0 0 -165px}
+  .booth-visual .arch{width:240px}
+  .booth-visual .booth{height:360px}
+  .booth-visual .detail{width:124px;height:124px;bottom:56px}
+  .booth-visual .detail-cap{bottom:14px;font-size:1.15rem}
+  .cta-row .btn{flex:1 1 100%}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .stat{flex-direction:column;align-items:flex-start;gap:0;padding:.6rem .75rem}
+  .stat b{font-size:1.3rem}
+  .stat span{font-size:.78rem}
+  .foot{flex-direction:column;align-items:flex-start}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none}
+}
 </style>
-<noscript>
-  <style>.reveal{ opacity:1 !important; transform:none !important; }</style>
-</noscript>
 </head>
 <body>
 
-<header>
-  <nav class="nav">
-    <a href="#top" class="logo">
-      <img src="assets/mark-black.png" alt="Pop N Pose Photobooth" class="logo-mark">
-      <span class="logo-text">Pop N Pose<small>Photobooth</small></span>
+<!-- Reusable little "photos" for the strips -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8C6A1E"/><stop offset=".45" stop-color="#E6C873"/><stop offset="1" stop-color="#B8892E"/></linearGradient>
+    <symbol id="spark" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12z"/></symbol>
+    <symbol id="duo" viewBox="0 0 100 76"><rect width="100" height="76" fill="#1A1814"/><circle cx="36" cy="32" r="12" fill="url(#g)"/><path d="M14 76c2-18 12-26 22-26s20 8 22 26z" fill="url(#g)"/><circle cx="66" cy="30" r="11" fill="#FFFDF8"/><path d="M46 76c2-17 10-24 20-24s18 7 20 24z" fill="#FFFDF8"/><path d="M58 14l8-12 8 12z" fill="url(#g)"/></symbol>
+    <symbol id="glasses" viewBox="0 0 100 76"><rect width="100" height="76" fill="url(#g)"/><circle cx="50" cy="34" r="16" fill="#0E0D0B"/><path d="M22 76c3-20 15-28 28-28s25 8 28 28z" fill="#0E0D0B"/><path d="M34 33c0-4 4-7 7-4 3-3 7 0 7 4 0 4-7 8-7 8s-7-4-7-8zm18 0c0-4 4-7 7-4 3-3 7 0 7 4 0 4-7 8-7 8s-7-4-7-8z" fill="#FFFDF8"/></symbol>
+    <symbol id="confetti" viewBox="0 0 100 76"><rect width="100" height="76" fill="#0E0D0B"/><g fill="url(#g)"><circle cx="18" cy="16" r="3"/><circle cx="80" cy="58" r="3"/><rect x="62" y="12" width="6" height="3" transform="rotate(30 65 13)"/><rect x="24" y="56" width="7" height="3" transform="rotate(-25 27 57)"/><path d="M50 18c1.6 12 6 16.4 18 18-12 1.6-16.4 6-18 18-1.6-12-6-16.4-18-18 12-1.6 16.4-6 18-18z"/></g><circle cx="84" cy="22" r="2" fill="#FFFDF8"/><circle cx="12" cy="44" r="2" fill="#FFFDF8"/></symbol>
+    <symbol id="heart" viewBox="0 0 100 76"><rect width="100" height="76" fill="#FFFDF8"/><circle cx="40" cy="34" r="11" fill="#0E0D0B"/><circle cx="62" cy="34" r="11" fill="#0E0D0B"/><path d="M18 76c2-16 11-22 22-22s20 6 22 22z" fill="#0E0D0B"/><path d="M40 76c2-16 11-22 22-22s20 6 22 22z" fill="#1A1814"/><path d="M51 16c0-3 3-5 5-3 2-2 5 0 5 3 0 3-5 6-5 6s-5-3-5-6z" fill="url(#g)"/></symbol>
+  </defs>
+</svg>
+
+<div class="flash" id="flash" aria-hidden="true"></div>
+
+<div class="ribbon">✦ Press · Pose · Pop ✦ <span>&nbsp;Open-air photobooth rentals across Toronto &amp; the GTA</span></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Pop N Pose Photobooth, back to top">
+      <img src="assets/favicon-180.png" alt="" width="44" height="44">
+      <span><b>Pop <i>N</i> Pose</b><small>Photobooth</small></span>
     </a>
-    <ul class="nav-links">
-      <li><a href="#how">How it works</a></li>
-      <li><a href="#booth">The booth</a></li>
-      <li><a href="#packages">Packages</a></li>
-      <li><a href="#faq">FAQ</a></li>
-    </ul>
-    <div class="nav-cta">
-      <a href="#contact" class="btn btn-primary">Check your date</a>
-      <button class="menu-btn" aria-label="Open menu"><span></span><span></span><span></span></button>
-    </div>
-  </nav>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#booth">The booth</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-dark" href="#contact" data-flash>Check your date</a>
+  </div>
 </header>
 
 <main id="top">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <p class="eyebrow">Toronto &amp; GTA · Open-air photobooth rentals</p>
-        <h1>Strike a pose.<br><em>We'll</em> do the rest.</h1>
-        <p class="lede">A built-in DSLR camera, a ring light, and a real print in your guests' hands before the song's over. Pop N Pose brings a proper photobooth — not a phone on a stick — to weddings, showers, and parties across the GTA.</p>
-        <div class="hero-ctas">
-          <a href="#contact" class="btn btn-primary">Check your date</a>
-          <a href="#packages" class="btn btn-ghost">See packages</a>
-        </div>
-        <div class="hero-meta">
-          <span>4.9★ AVG RATING</span>
-          <span>120+ EVENTS SHOT</span>
-          <span>PRINTS IN ~8 SEC</span>
-        </div>
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Toronto &amp; GTA · Open-air photobooth</span>
+      <h1>Strike a pose.<span class="line2"><em class="gold">We'll</em> do the rest.</span></h1>
+      <p class="lede">A built-in DSLR, a glowing ring light, and a real print in your guests' hands before the song's over. A proper photobooth (not a phone on a stick) for weddings, showers and parties across the GTA.</p>
+      <div class="cta-row">
+        <a class="btn btn-dark" href="#contact" data-flash>Check your date <span aria-hidden="true">→</span></a>
+        <a class="btn btn-line" href="#packages">See packages</a>
       </div>
-      <div class="booth-stage">
-        <div class="booth-card">
-          <div class="flash-veil"></div>
-          <div class="booth-photo-wrap">
-            <img src="assets/booth-black.png" alt="Pop N Pose studio black open-air photobooth" class="booth-photo">
-          </div>
-          <p class="booth-caption">PRESS · POSE · POP</p>
-          <div class="strip-slot">
-            <div class="filmstrip">
-              <div class="frame"></div>
-              <div class="frame"></div>
-              <div class="frame"></div>
-              <p class="stamp">08 · 18 · 26</p>
-            </div>
-          </div>
-        </div>
+      <div class="stats" aria-label="Quick facts">
+        <div class="stat"><b>4.9<span class="star">★</span></b><span>avg. rating</span></div>
+        <div class="stat"><b>120+</b><span>events shot</span></div>
+        <div class="stat"><b>~8s</b><span>to print</span></div>
       </div>
     </div>
-    <div class="marquee">
-      <div class="marquee-track">
-        <span>OPEN-AIR PHOTOBOOTH</span><span>PRINTS IN ~8 SECONDS</span><span>BOOK YOUR DATE</span><span>TORONTO &amp; THE GTA</span><span>OPEN-AIR PHOTOBOOTH</span><span>PRINTS IN ~8 SECONDS</span><span>BOOK YOUR DATE</span><span>TORONTO &amp; THE GTA</span>
+
+    <div class="stage reveal" aria-hidden="true">
+      <div class="arch"></div>
+      <div class="floor"></div>
+      <img class="booth" src="assets/booth-black.png" alt="" width="171" height="542">
+      <div class="strip s1">
+        <div class="f"><svg><use href="#duo"/></svg></div>
+        <div class="f"><svg><use href="#glasses"/></svg></div>
+        <div class="f"><svg><use href="#confetti"/></svg></div>
+        <p>Pop N Pose</p>
+      </div>
+      <div class="strip s2">
+        <div class="f"><svg><use href="#heart"/></svg></div>
+        <div class="f"><svg><use href="#confetti"/></svg></div>
+        <div class="f"><svg><use href="#duo"/></svg></div>
+        <p>Pop N Pose</p>
+      </div>
+      <div class="stamp"><img src="assets/badge-thankyou.png" alt=""></div>
+      <div class="note n1">still warm!
+        <svg viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 6c14 2 30 10 44 26"/><path d="M38 30l10 3 1-11"/></svg>
+      </div>
+      <span class="spark" style="left:30%;top:6%"><svg><use href="#spark"/></svg></span>
+      <span class="spark" style="right:30%;top:42%;width:16px;height:16px;animation-delay:-1.2s"><svg><use href="#spark"/></svg></span>
+      <span class="spark" style="left:18%;top:46%;width:14px;height:14px;animation-delay:-2s"><svg><use href="#spark"/></svg></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TICKER ================= -->
+<div class="ticker" aria-hidden="true">
+  <div class="track">
+    <span>Press <i>·</i> Pose <i>·</i> Pop <i>✦</i> Open-air photobooth <i>✦</i> Prints in ~8 seconds <i>✦</i> Unlimited sessions <i>✦</i> Toronto &amp; the GTA <i>✦</i> Book your date <i>✦</i></span>
+    <span>Press <i>·</i> Pose <i>·</i> Pop <i>✦</i> Open-air photobooth <i>✦</i> Prints in ~8 seconds <i>✦</i> Unlimited sessions <i>✦</i> Toronto &amp; the GTA <i>✦</i> Book your date <i>✦</i></span>
+  </div>
+</div>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section id="how" class="pad">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">The rundown</span>
+      <h2>Three steps between booking<br>and <em class="gold">belly laughs</em></h2>
+    </div>
+    <div class="steps">
+      <article class="step reveal">
+        <span class="count">3</span>
+        <span class="tag">your vibe</span>
+        <h3>Pick your look</h3>
+        <p>Choose your backdrop and print layout. We match the overlay to your colours, monogram or logo, at no extra charge.</p>
+      </article>
+      <article class="step reveal">
+        <span class="count">2</span>
+        <span class="tag">our job</span>
+        <h3>We set the scene</h3>
+        <p>We roll in an hour early, build the backdrop, style the prop table and run a test strip. You just show up.</p>
+      </article>
+      <article class="step reveal">
+        <span class="count">1…</span>
+        <span class="tag">pop!</span>
+        <h3>Pop, pose, print</h3>
+        <p>Guests tap the button, strike a pose and walk away with a print in about 8 seconds, plus a digital copy on their phone.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THE BOOTH ================= -->
+<section id="booth" class="dark booth-sec pad">
+  <div class="wrap booth-grid">
+    <div class="booth-visual reveal">
+      <div class="ring"></div>
+      <div class="arch"></div>
+      <img class="booth" src="assets/booth-black.png" alt="Studio Black open-air photobooth on its matte black floor stand" width="171" height="542">
+      <div class="detail"><img src="assets/detail-camera.png" alt="Close-up of the booth's built-in DSLR camera and ring light" width="700" height="532"></div>
+      <span class="detail-cap">real DSLR inside ↑</span>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">The hardware</span>
+      <h2>Meet <em class="gold">Studio Black.</em></h2>
+      <p class="lede">Matte black, open-air and seriously photogenic. A built-in DSLR, ring light and instant printer with a 15.6" touchscreen, all on a floor stand with a floating prop shelf. Built for beautiful results.</p>
+      <div class="feat">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h3l2-3h8l2 3h3v11H3z"/><circle cx="12" cy="13" r="4"/></svg><b>Built-in DSLR</b><span>Sharp, flattering shots</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/></svg><b>Ring light</b><span>Glow-up lighting, every frame</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/></svg><b>15.6" touchscreen</b><span>Tap, pose, done</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M10 8.5v5l4-2.5z" fill="currentColor"/></svg><b>Live slideshow</b><span>Every shot on loop</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg><b>Built-in printer</b><span>Prints in ~8 seconds</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="8" y="2" width="8" height="7" rx="1.5"/><path d="M12 9v11M7 14h10M6 21h12"/></svg><b>Floor stand incl.</b><span>With floating prop shelf</span></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- HOW IT WORKS -->
-  <section id="how">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">The rundown</p>
-        <h2>Three steps between booking and belly laughs</h2>
-        <p>No apps, no queues, no fumbling with props while your makeup's still fresh. We show up, we set up, your guests do the rest.</p>
-      </div>
-      <div class="steps reveal">
-        <div class="step">
-          <span class="step-num">01</span>
-          <h3>Pick your look</h3>
-          <p>Choose your booth style, backdrop and print layout. We'll match the overlay to your colours, monogram or logo — no extra charge.</p>
-        </div>
-        <div class="step">
-          <span class="step-num">02</span>
-          <h3>We set the scene</h3>
-          <p>Our team arrives an hour early, builds the backdrop, styles the prop table, and runs a full test strip before a single guest walks in.</p>
-        </div>
-        <div class="step">
-          <span class="step-num">03</span>
-          <h3>Pop, pose, print</h3>
-          <p>Guests tap the button, strike a pose, and walk away with a print in about 8 seconds — plus a digital copy waiting on their phone.</p>
-        </div>
+<!-- ================= OCCASIONS ================= -->
+<section class="pad">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">Great for</span>
+      <h2>Perfect for <em class="gold">every</em> occasion</h2>
+    </div>
+    <div class="occ">
+      <article class="reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="14" r="6"/><circle cx="15" cy="14" r="6"/><path d="M10 4l2-2 2 2-2 2z" fill="currentColor"/></svg></div>
+        <h3>Weddings</h3>
+        <p>Your names and date on every strip. Unlimited copies, so the favours take care of themselves.</p>
+      </article>
+      <article class="reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V4h6v3M3 13h18"/></svg></div>
+        <h3>Corporate</h3>
+        <p>Your logo and brand colours on the prints and the welcome screen. On-brand, right down to the hex code.</p>
+      </article>
+      <article class="reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 2c3.9 0 7 3 7 6.8 0 4-3.4 7.2-7 7.2s-7-3.2-7-7.2C5 5 8.1 2 12 2z"/><path d="M12 16l-1 2h2l-1-2M12 18c0 2-2 2-2 4"/></svg></div>
+        <h3>Showers &amp; birthdays</h3>
+        <p>Milestone birthdays, baby showers, bridal showers. The moments worth printing (twice).</p>
+      </article>
+      <article class="reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 2v3"/><circle cx="12" cy="13" r="8"/><path d="M4 13h16M12 5c-3 3-3 13 0 16M12 5c3 3 3 13 0 16"/></svg></div>
+        <h3>Parties &amp; socials</h3>
+        <p>Office holiday parties to backyard get-togethers. We're set up in under an hour.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PACKAGES ================= -->
+<section id="packages" class="pk-wrap pad">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">Packages</span>
+      <h2>Built for however long<br>the party <em class="gold">runs</em></h2>
+      <div class="pk-note">
+        <span>Attendant included</span><span>Unlimited sessions</span><span>Custom print design</span><span>Shareable online gallery</span>
       </div>
     </div>
-  </section>
 
-  <!-- MEET THE BOOTH -->
-  <section id="booth" style="background:var(--fog); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
-    <div class="wrap">
-      <img src="assets/logo-lockup-black.png" alt="Pop N Pose Photobooth" class="brand-badge reveal">
-      <div class="section-head reveal" style="text-align:center; margin-left:auto; margin-right:auto;">
-        <p class="eyebrow" style="justify-content:center;">The hardware</p>
-        <h2>Studio Black. Same DSLR magic.</h2>
-        <p style="margin-left:auto; margin-right:auto;">A built-in DSLR camera, a ring light for perfectly lit shots every time, an instant printer, and a 15.6" touchscreen — all packed into one matte black stand.</p>
-      </div>
-      <div class="rigs rigs-single reveal">
-        <div class="rig">
-          <span class="rig-tag">Studio Black</span>
-          <div class="rig-photo-wrap">
-            <img src="assets/booth-black.png" alt="Studio Black open-air photobooth on a floor stand" class="rig-photo">
-          </div>
-          <h3>The blackout stand</h3>
-          <p class="desc">Matte black shell with a floating shelf for props. Disappears into any backdrop, wedding or warehouse party alike. Between sessions, the 15.6" screen runs a live slideshow of every shot taken that night.</p>
-          <ul class="rig-feats">
-            <li>Built-in DSLR camera</li>
-            <li>Ring light</li>
-            <li>15.6" touchscreen</li>
-            <li>Live event slideshow</li>
-            <li>Built-in printer</li>
-            <li>Floor stand incl.</li>
-          </ul>
+    <div class="packages">
+      <article class="pkg reveal">
+        <div class="top">
+          <span class="hrs">2 hours</span>
+          <h3>The Pop</h3>
+          <div class="price">$499<small>+ HST</small></div>
+          <p class="blurb">Right-sized for showers, small parties and brand activations.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BUILT FOR BEAUTIFUL RESULTS -->
-  <section id="features">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Booth features</p>
-        <h2>Built for beautiful results</h2>
-        <p>Professional gear under the hood — this is what actually makes the shots look this good.</p>
-      </div>
-
-      <div class="feat-row reveal">
-        <div class="feat-photo">
-          <img src="assets/detail-camera.png" alt="Close-up of the booth's built-in DSLR camera and ring light">
-        </div>
-        <div class="feat-copy">
-          <span class="feat-num">01</span>
-          <h3>Built-in DSLR &amp; ring light</h3>
-          <p>A real DSLR camera paired with a ring light around the lens means every shot comes out crisp and evenly lit — no harsh shadows, no grainy phone-camera look, no matter how dark the venue gets.</p>
-        </div>
-      </div>
-
-      <div class="feat-row feat-reverse reveal">
-        <div class="feat-photo">
-          <img src="assets/booth-black.png" alt="Pop N Pose Studio Black photobooth with built-in instant printer">
-        </div>
-        <div class="feat-copy">
-          <span class="feat-num">02</span>
-          <h3>Prints in about 8 seconds</h3>
-          <p>The printer is built right into the stand — no separate station, no waiting on an app or a text message. Guests walk away with a real print still warm from the machine before the next song starts.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PERFECT FOR EVERY OCCASION -->
-  <section style="background:var(--fog); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Great for</p>
-        <h2>Perfect for every occasion</h2>
-        <p>Same booth, same 8-second magic — it just adapts to whatever you've got going on.</p>
-      </div>
-      <div class="occasions reveal">
-        <div class="occasion">
-          <h4>Weddings</h4>
-          <p>Prints personalized with the couple's names and date — unlimited copies, doubling as a wedding favour.</p>
-        </div>
-        <div class="occasion">
-          <h4>Corporate events</h4>
-          <p>Prints and the welcome screen carry your logo and brand colours for a polished, on-brand activation.</p>
-        </div>
-        <div class="occasion">
-          <h4>Showers &amp; birthdays</h4>
-          <p>A crowd-pleaser for milestone birthdays, baby and bridal showers, and everything worth celebrating.</p>
-        </div>
-        <div class="occasion">
-          <h4>Parties &amp; socials</h4>
-          <p>From office holiday parties to backyard get-togethers — set up in under an hour, packed up just as fast.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PACKAGES -->
-  <section id="packages">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Packages</p>
-        <h2>Built for however long the party runs</h2>
-        <p>Every package includes an attendant, unlimited sessions, a custom print design, and a shareable online gallery after the event.</p>
-      </div>
-      <div class="pkg-grid reveal">
-        <div class="pkg">
-          <span class="pkg-tag">The Pop</span>
-          <h3>2 Hours</h3>
-          <p class="pkg-price">$499 <span>+ HST</span></p>
-          <p class="desc">Right-sized for showers, small parties and brand activations.</p>
-          <hr>
-          <ul>
-            <li>Open air + attendant</li>
-            <li>Custom design on screen</li>
-            <li>Attendant on site</li>
-            <li>Online gallery, 30 days access</li>
-            <li>5 backdrops to choose from</li>
-          </ul>
-          <a href="#contact" class="btn btn-ghost">Check availability</a>
-        </div>
-        <div class="pkg featured">
-          <span class="pkg-tag">The Pose</span>
-          <h3>3 Hours</h3>
-          <p class="pkg-price">$599 <span>+ HST</span></p>
-          <p class="desc">Our most-booked package — the sweet spot for weddings and milestone birthdays.</p>
-          <hr>
-          <ul>
-            <li>Everything in The Pop</li>
-            <li>Custom design on screen</li>
-            <li>Attendant on site</li>
-            <li>Online gallery, 90 days access</li>
-            <li>7 backdrops to choose from</li>
-          </ul>
-          <a href="#contact" class="btn btn-ghost">Check availability</a>
-        </div>
-        <div class="pkg">
-          <span class="pkg-tag">The Encore</span>
-          <h3>4+ Hours</h3>
-          <p class="pkg-price">$799 <span>+ HST</span></p>
-          <p class="desc">For the day-long celebration — ceremony through last dance.</p>
-          <hr>
-          <ul>
-            <li>Everything in The Pose</li>
-            <li>Custom design on screen</li>
-            <li>Attendant on site</li>
-            <li>Online gallery, 90 days access</li>
-            <li>7 backdrops to choose from</li>
-          </ul>
-          <a href="#contact" class="btn btn-ghost">Check availability</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXTRAS -->
-  <section style="background:var(--fog); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Add the extras</p>
-        <h2>Little touches, made to order</h2>
-      </div>
-      <div class="extras reveal">
-        <div class="extra">
-          <div class="ex-icon">
-            <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="2" y="5" width="22" height="14" rx="1.5" stroke="var(--ink)" stroke-width="1.4"/><path d="M9 23h8M13 19v4" stroke="var(--ink)" stroke-width="1.4"/><circle cx="13" cy="12" r="3.2" stroke="var(--ink)" stroke-width="1.4"/></svg>
-          </div>
-          <h4>Live slideshow</h4>
-          <p>The 15.6" screen loops every shot from the night in between sessions — guests end up watching as much as posing.</p>
-        </div>
-        <div class="extra">
-          <div class="ex-icon">
-            <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="3" y="6" width="20" height="14" rx="1.5" stroke="var(--ink)" stroke-width="1.4"/><path d="M3 10h20" stroke="var(--ink)" stroke-width="1.4"/></svg>
-          </div>
-          <h4>Custom overlay</h4>
-          <p>Names, dates or a logo laid into every print, matched to your palette.</p>
-        </div>
-        <div class="extra">
-          <div class="ex-icon">
-            <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M4 13a9 9 0 1118 0 9 9 0 01-18 0z" stroke="var(--ink)" stroke-width="1.4"/><path d="M13 8v5l3.5 2" stroke="var(--ink)" stroke-width="1.4"/></svg>
-          </div>
-          <h4>Boomerang mode</h4>
-          <p>Short looping clips for the guests who can't sit still for a still photo.</p>
-        </div>
-        <div class="extra">
-          <div class="ex-icon">
-            <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M4 20V9l9-6 9 6v11" stroke="var(--ink)" stroke-width="1.4" stroke-linejoin="round"/><path d="M10 20v-7h6v7" stroke="var(--ink)" stroke-width="1.4"/></svg>
-          </div>
-          <h4>Backdrop build</h4>
-          <p>Floral walls, sequin curtains, or a fully custom backdrop to match your theme.</p>
-        </div>
-        <div class="extra">
-          <div class="ex-icon">
-            <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M5 21V9l8-5 8 5v12" stroke="var(--ink)" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 21h16M9 21v-6h8v6" stroke="var(--ink)" stroke-width="1.4"/></svg>
-          </div>
-          <h4>Guestbook</h4>
-          <p>Every strip gets a duplicate, hand-glued into a book with room for a note.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section style="background:var(--fog); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
-    <div class="wrap">
-      <div class="section-head-row reveal">
-        <div class="section-head" style="margin-bottom:0;">
-          <p class="eyebrow">From the guestbook</p>
-          <h2>Notes our guests left behind</h2>
-        </div>
-        <img src="assets/badge-thankyou.png" alt="Pop N Pose — captured with love" class="thankyou-stamp">
-      </div>
-      <div class="guestbook reveal">
-        <div class="g-card">
-          <p class="quote">"The line never stopped moving and the prints were still warm when we got home. Best $ we spent on the wedding."</p>
-          <p class="who">— T. &amp; R., Married June 2026</p>
-        </div>
-        <div class="g-card">
-          <p class="quote">"They matched the overlay to our brand colours down to the hex code. Our team still has theirs pinned up at their desks."</p>
-          <p class="who">— Event Lead, Corporate Holiday Party</p>
-        </div>
-        <div class="g-card">
-          <p class="quote">"Booked The Pose for a baby shower and the attendant kept the whole thing running itself. Zero stress, all fun."</p>
-          <p class="who">— N., Mississauga</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Good to know</p>
-        <h2>Questions we hear a lot</h2>
-      </div>
-      <div class="faq reveal">
-        <details open>
-          <summary>How much space do you need? <span class="plus">+</span></summary>
-          <p>A 10x10 ft footprint covers the booth and backdrop comfortably. We can work with less — just let us know the room when you book.</p>
-        </details>
-        <details>
-          <summary>Do you travel outside Toronto? <span class="plus">+</span></summary>
-          <p>Yes — we regularly cover Mississauga, Vaughan, Oakville and the broader GTA. Venues outside a 30km radius may include a small travel fee.</p>
-        </details>
-        <details>
-          <summary>How far in advance should we book? <span class="plus">+</span></summary>
-          <p>Wedding season (May–October) books up 3–6 months out. For showers and corporate events, 3–4 weeks' notice is usually plenty.</p>
-        </details>
-        <details>
-          <summary>Is a deposit required? <span class="plus">+</span></summary>
-          <p>A 30% deposit holds your date, with the balance due one week before your event. We'll send a contract and invoice once details are confirmed.</p>
-        </details>
-        <details>
-          <summary>Can guests get digital copies too? <span class="plus">+</span></summary>
-          <p>Every session lands in a shareable online gallery, plus a QR code at the booth so guests can grab their digital copy on the spot.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="dark">
-    <div class="wrap contact-grid">
-      <div class="contact-info reveal">
-        <img src="assets/logo-lockup-white.png" alt="Pop N Pose Photobooth" class="brand-badge" style="margin:0 0 24px;">
-        <p class="eyebrow">Let's talk dates</p>
-        <h3 style="margin-top:16px;">Tell us about your event</h3>
-        <p>Send over the basics and we'll reply within a day with availability and a quote — no pressure, no spam.</p>
-        <ul class="contact-list">
-          <li><span>Email</span><a href="mailto:Bookpopnpose@gmail.com">Bookpopnpose@gmail.com</a></li>
-          <li><span>Instagram</span><a href="#">@popnpose.jpg</a></li>
-          <li><span>Service area</span>Toronto · Mississauga · the GTA</li>
+        <ul>
+          <li>Open-air booth + on-site attendant</li>
+          <li>Custom design on screen</li>
+          <li>Online gallery, 30 days access</li>
+          <li>5 backdrops to choose from</li>
         </ul>
-      </div>
-      <form class="reveal">
-        <div class="form-row">
-          <div>
-            <label for="name">Name</label>
-            <input id="name" type="text" placeholder="Your name">
-          </div>
-          <div>
-            <label for="email">Email</label>
-            <input id="email" type="email" placeholder="you@email.com">
-          </div>
+        <a class="btn btn-line" href="#contact" data-pkg="The Pop">Check availability</a>
+      </article>
+
+      <article class="pkg star reveal">
+        <span class="sticker">most booked!</span>
+        <div class="top">
+          <span class="hrs">3 hours</span>
+          <h3>The Pose</h3>
+          <div class="price">$599<small>+ HST</small></div>
+          <p class="blurb">The sweet spot for weddings and milestone birthdays.</p>
         </div>
-        <div class="form-row">
-          <div>
-            <label for="date">Event date</label>
-            <input id="date" type="date">
-          </div>
-          <div>
-            <label for="type">Event type</label>
-            <select id="type">
-              <option>Wedding</option>
-              <option>Shower / Birthday</option>
-              <option>Corporate</option>
-              <option>Other</option>
-            </select>
-          </div>
+        <ul>
+          <li>Everything in The Pop</li>
+          <li>Custom design on screen</li>
+          <li>Online gallery, 90 days access</li>
+          <li>7 backdrops to choose from</li>
+        </ul>
+        <a class="btn btn-gold" href="#contact" data-pkg="The Pose" data-flash>Check availability</a>
+      </article>
+
+      <article class="pkg reveal">
+        <div class="top">
+          <span class="hrs">4+ hours</span>
+          <h3>The Encore</h3>
+          <div class="price">$799<small>+ HST</small></div>
+          <p class="blurb">For the day-long celebration, ceremony through last dance.</p>
         </div>
-        <div>
-          <label for="msg">A little about your event</label>
-          <textarea id="msg" placeholder="Venue, guest count, vibe — whatever helps us plan."></textarea>
-        </div>
-        <button type="submit" class="btn btn-invert">Send it over</button>
-      </form>
+        <ul>
+          <li>Everything in The Pose</li>
+          <li>Custom design on screen</li>
+          <li>Online gallery, 90 days access</li>
+          <li>7 backdrops to choose from</li>
+        </ul>
+        <a class="btn btn-line" href="#contact" data-pkg="The Encore">Check availability</a>
+      </article>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- ================= ADD-ONS ================= -->
+<section class="pad">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Add the extras</span>
+      <h2>Little touches, <em class="gold">made to order</em></h2>
+    </div>
+    <div class="addons">
+      <div class="addon reveal"><b>Live slideshow</b><p>The 15.6" screen loops every shot from the night between sessions.</p></div>
+      <div class="addon reveal"><b>Custom overlay</b><p>Names, dates or a logo on every print, matched to your palette.</p></div>
+      <div class="addon reveal"><b>Boomerang mode</b><p>Short looping clips, made for sharing.</p></div>
+      <div class="addon reveal"><b>Backdrop build</b><p>Floral walls, sequin curtains, or fully custom.</p></div>
+      <div class="addon reveal"><b>Guestbook</b><p>A duplicate of every strip, hand-glued into a book with room for a note.</p></div>
+    </div>
+    <p class="addons-foot reveal">Just ask, and we'll fold it into your quote ✦</p>
+  </div>
+</section>
+
+<!-- ================= REVIEWS ================= -->
+<section class="pad" style="background:linear-gradient(var(--paper),var(--cream))">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">From the guestbook</span>
+      <h2>Notes our guests <em class="gold">left behind</em></h2>
+    </div>
+    <div class="reviews">
+      <figure class="polaroid reveal">
+        <blockquote class="q"><p>The line never stopped moving and the prints were still warm when we got home. Best $ we spent on the wedding.</p><span class="stars" aria-label="5 stars">★★★★★</span></blockquote>
+        <figcaption class="who">T. &amp; R.<small>Married June 2026</small></figcaption>
+      </figure>
+      <figure class="polaroid reveal">
+        <blockquote class="q"><p>They matched the overlay to our brand colours down to the hex code. Our team still has theirs pinned up at their desks.</p><span class="stars" aria-label="5 stars">★★★★★</span></blockquote>
+        <figcaption class="who">Event Lead<small>Corporate holiday party</small></figcaption>
+      </figure>
+      <figure class="polaroid reveal">
+        <blockquote class="q"><p>Booked The Pose for a baby shower and the attendant kept the whole thing running itself. Zero stress, all fun.</p><span class="stars" aria-label="5 stars">★★★★★</span></blockquote>
+        <figcaption class="who">N.<small>Mississauga</small></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq" class="pad">
+  <div class="wrap faq-grid">
+    <div class="faq-side reveal">
+      <span class="eyebrow">Good to know</span>
+      <h2>Questions we <em class="gold">hear a lot</em></h2>
+      <p class="lede">Something else on your mind? Send it over with your date and we'll answer that too.</p>
+      <img class="badge" src="assets/badge-thankyou.png" alt="Pop N Pose: captured with love" width="700" height="635">
+    </div>
+    <div class="reveal">
+      <details open>
+        <summary>How much space do you need?<span class="pm" aria-hidden="true"></span></summary>
+        <p>A 10 × 10 ft footprint covers the booth and backdrop. Tighter room? Share the details when you book and we'll make it work.</p>
+      </details>
+      <details>
+        <summary>Do you travel outside Toronto?<span class="pm" aria-hidden="true"></span></summary>
+        <p>All the time: Mississauga, Vaughan, Oakville and the broader GTA. Venues beyond about 30 km may carry a small travel fee.</p>
+      </details>
+      <details>
+        <summary>How far in advance should we book?<span class="pm" aria-hidden="true"></span></summary>
+        <p>Wedding season (May to October) books 3 to 6 months out. Showers and corporate events usually need 3 to 4 weeks' notice.</p>
+      </details>
+      <details>
+        <summary>Is a deposit required?<span class="pm" aria-hidden="true"></span></summary>
+        <p>A 30% deposit holds your date, and the balance is due one week before the event. We send a contract and invoice once the details are confirmed.</p>
+      </details>
+      <details>
+        <summary>Can guests get digital copies too?<span class="pm" aria-hidden="true"></span></summary>
+        <p>Yes! Every session lands in a shareable online gallery, and a QR code at the booth lets guests grab their copy on the spot.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="contact dark pad">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <span class="eyebrow">Contact</span>
+      <h2>Let's talk <em class="gold">dates.</em></h2>
+      <p class="lede">Tell us about your event and we'll get back to you within a day with availability and a quote. No pressure, no spam.</p>
+      <ul class="contact-list">
+        <li><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span><small>Email</small><a href="mailto:Bookpopnpose@gmail.com">Bookpopnpose@gmail.com</a></span></li>
+        <!-- TODO: replace # with the real Instagram profile link -->
+        <li><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span><span><small>Instagram</small><a href="#">@popnpose.jpg</a></span></li>
+        <li><span class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 22s7-6.3 7-12a7 7 0 1 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><small>Service area</small>Toronto · Mississauga · the GTA</span></li>
+      </ul>
+    </div>
+
+    <form class="form reveal" id="inquiry" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="booking">
+      <p hidden><label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <h3>Tell us about your event</h3>
+      <p class="sub">Takes 30 seconds. We'll take it from there.</p>
+      <div class="row">
+        <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required placeholder="Your name"></div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required placeholder="you@email.com"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="f-date">Event date</label><input id="f-date" name="date" type="date"></div>
+        <div class="field"><label for="f-type">Event type</label>
+          <select id="f-type" name="type">
+            <option>Wedding</option><option>Shower</option><option>Birthday</option><option>Corporate</option><option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="field"><label for="f-pkg">Package</label>
+        <select id="f-pkg" name="package">
+          <option>Not sure yet</option><option>The Pop (2 hours)</option><option>The Pose (3 hours)</option><option>The Encore (4+ hours)</option>
+        </select>
+      </div>
+      <div class="field"><label for="f-msg">A little about your event</label><textarea id="f-msg" name="message" placeholder="Venue, guest count, vibe, colours… anything!"></textarea></div>
+      <button class="btn btn-dark" type="submit">Send it over ✦</button>
+      <p class="ok" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
 
 </main>
 
 <footer>
   <div class="wrap">
-    <div class="foot-row">
-      <div class="logo">
-        <img src="assets/mark-white.png" alt="Pop N Pose Photobooth" class="logo-mark">
-        <span class="logo-text">Pop N Pose<small>Photobooth</small></span>
-      </div>
-      <ul class="foot-links">
-        <li><a href="#how">How it works</a></li>
-        <li><a href="#booth">The booth</a></li>
-        <li><a href="#packages">Packages</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+    <div class="foot">
+      <img src="assets/logo-lockup-white.png" alt="Pop N Pose Photobooth" width="900" height="658">
+      <nav aria-label="Footer">
+        <a href="#how">How it works</a><a href="#booth">The booth</a><a href="#packages">Packages</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+      </nav>
     </div>
-    <div class="foot-bottom">
-      <span>© 2026 Pop N Pose Photobooth · Toronto, ON</span>
-      <span>PRESS · POSE · POP</span>
-    </div>
+    <p class="foot-slogan" aria-label="Press, pose, pop">Press<span class="dot">·</span>Pose<span class="dot">·</span><i class="gold-text">Pop!</i></p>
+    <p class="copy">© <span id="yr">2026</span> Pop N Pose Photobooth · Toronto, ON</p>
   </div>
 </footer>
 
 <script>
-  // Mobile menu toggle
-  const menuBtn = document.querySelector('.menu-btn');
-  const navLinks = document.querySelector('.nav-links');
+(function(){
+  document.documentElement.classList.add('js');
+  var yr = document.getElementById('yr'); if (yr) yr.textContent = new Date().getFullYear();
 
-  function closeMenu(){
-    navLinks.classList.remove('open');
-    menuBtn.setAttribute('aria-expanded', 'false');
-  }
-  function toggleMenu(){
-    const willOpen = !navLinks.classList.contains('open');
-    navLinks.classList.toggle('open', willOpen);
-    menuBtn.setAttribute('aria-expanded', String(willOpen));
-  }
+  // Scroll reveal
+  var els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold: .12, rootMargin: '0px 0px -40px 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  } else { els.forEach(function(el){ el.classList.add('in'); }); }
 
-  menuBtn.addEventListener('click', toggleMenu);
-  navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 980) closeMenu();
+  // Camera flash on CTA clicks
+  var flash = document.getElementById('flash');
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('[data-flash]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if (still) return;
+      flash.classList.remove('go'); void flash.offsetWidth; flash.classList.add('go');
+    });
   });
 
-  // Only one FAQ item open at a time
-  document.querySelectorAll('#faq details').forEach((el) => {
-    el.addEventListener('toggle', () => {
-      if (el.open) {
-        document.querySelectorAll('#faq details').forEach((other) => {
-          if (other !== el) other.open = false;
-        });
+  // "Check availability" pre-selects the package in the form
+  var pkgSelect = document.getElementById('f-pkg');
+  document.querySelectorAll('[data-pkg]').forEach(function(a){
+    a.addEventListener('click', function(){
+      var name = a.getAttribute('data-pkg');
+      for (var i = 0; i < pkgSelect.options.length; i++) {
+        if (pkgSelect.options[i].text.indexOf(name) === 0) { pkgSelect.selectedIndex = i; }
       }
     });
   });
 
-  // Scroll-triggered reveal animations
-  const revealEls = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-    revealEls.forEach((el) => io.observe(el));
-    // Safety net: guarantee visibility even if an observer callback never fires
-    window.setTimeout(() => {
-      revealEls.forEach((el) => el.classList.add('is-visible'));
-    }, 4000);
-  } else {
-    revealEls.forEach((el) => el.classList.add('is-visible'));
-  }
-</script>
+  // Inquiry form.
+  // On Netlify: the request is saved and emailed to you (Netlify Forms).
+  // On GitHub Pages (no form service): the visitor's email app opens with everything filled in.
+  var form = document.getElementById('inquiry');
+  var okMsg = form.querySelector('.ok');
+  var sendBtn = form.querySelector('button[type=submit]');
+  var BOOKING_EMAIL = 'Bookpopnpose@gmail.com';
 
+  function openEmailApp(f){
+    var date = f['date'].value || 'TBD';
+    var subject = 'Photobooth inquiry: ' + f['type'].value + ' on ' + date;
+    var body = 'Hi Pop N Pose!\n\n' +
+      'Name: ' + f['name'].value.trim() + '\n' +
+      'Email: ' + f['email'].value.trim() + '\n' +
+      'Event date: ' + date + '\n' +
+      'Event type: ' + f['type'].value + '\n' +
+      'Package: ' + f['package'].value + '\n\n' +
+      (f['message'].value.trim() || '') + '\n';
+    window.location.href = 'mailto:' + BOOKING_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    okMsg.textContent = "Your email app should open with everything filled in. Just hit send, and we'll reply within a day!";
+    form.classList.add('sent');
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var f = form.elements;
+    if (!f['name'].value.trim()) { f['name'].focus(); return; }
+    var email = f['email'].value.trim();
+    if (!email || email.indexOf('@') < 1) { f['email'].focus(); return; }
+
+    sendBtn.disabled = true; sendBtn.textContent = 'Sending…';
+    var payload = new URLSearchParams(new FormData(form)).toString();
+    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: payload })
+      .then(function(r){
+        if (!r.ok) throw new Error('no form service');
+        okMsg.textContent = "Got it, thank you! We'll reply within a day with availability and a quote.";
+        form.classList.add('sent');
+        form.reset();
+      })
+      .catch(function(){ openEmailApp(f); })
+      .then(function(){ sendBtn.disabled = false; sendBtn.textContent = 'Send it over ✦'; });
+  });
+})();
+</script>
 </body>
 </html>
