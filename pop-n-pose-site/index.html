@@ -841,6 +841,7 @@ footer{background:var(--ink);color:#A9A090;border-top:1px solid #2A261F;padding:
       })
       .catch(function(){
         okMsg.textContent = "Sorry, that didn't go through. Please email us at " + BOOKING_EMAIL + " and we'll get right back to you.";
+        form.classList.add('sent');
       })
       .then(function(){ sendBtn.disabled = false; sendBtn.textContent = 'Send it over ✦'; });
   });
